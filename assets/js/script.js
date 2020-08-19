@@ -332,10 +332,21 @@
 
 // Google Maps API Autocomplete Only
 
+const IRELAND_BOUNDS = {
+    north: 55.33539361,
+    south: 51.4266145,
+    west: -10.58532715,
+    east: -5.43273926
+};
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 53.6299294, lng: -7.8969509 },
-        zoom: 13
+        zoom: 7,
+        restriction: {
+            latLngBounds: IRELAND_BOUNDS,
+            strictBounds: true
+        },
     });
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
@@ -344,7 +355,14 @@ function initMap() {
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    // options for bounds
+    var options = {
+        bounds: IRELAND_BOUNDS,
+        types: ['establishment'],
+        strictBounds: true
+    };
+
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
 
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
@@ -416,6 +434,11 @@ function initMap() {
     document.getElementById('use-strict-bounds')
         .addEventListener('click', function() {
             console.log('Checkbox clicked! New state=' + this.checked);
-            autocomplete.setOptions({ strictBounds: this.checked });
+            // autocomplete.setOptions({ strictBounds: this.checked });
+            autocomplete.setOptions({ strictBounds: true });
         });
 }
+
+$(function() {
+    $('.selectpicker').selectpicker();
+});

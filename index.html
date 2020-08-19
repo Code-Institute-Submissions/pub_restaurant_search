@@ -144,7 +144,7 @@
     </div> -->
 
     <!-- Google Maps API Autocomplete Only -->
-
+    <!-- <div class="pac-card" id="pac-card"></div> -->
     <div id="type-selector" class="pac-controls">
         <input type="radio" name="type" id="changetype-all" checked="checked">
         <label for="changetype-all">All</label>
@@ -163,9 +163,22 @@
         <label for="use-strict-bounds">Strict Bounds</label>
     </div>
     </div>
-    <div id="pac-container">
+    <!-- <div id="pac-container">
         <input id="pac-input" type="text" placeholder="Enter a location">
-    </div>
+    </div> -->
+    <!-- Search form -->
+    <form class="form-inline d-flex justify-content-left md-form form-sm active-cyan active-cyan-2 mt-2">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search">
+        <select class="form-control form-control-sm ml-3 w-40 selectpicker" id="select-county" data-live-search="true">
+            <option data-tokens="dublin">Dublin</option>
+            <option data-tokens="donegal">Donegal</option>
+            <option data-tokens="mayo">Mayo</option>
+        </select>
+    </form>
+    <form>
+
+    </form>
     </div>
 
     <div id="map"></div>
