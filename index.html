@@ -46,105 +46,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- Autocomplete Google Maps Search field -->
-
-    <!-- <div class="pac-card" id="pac-card">
-        <div>
-            <div id="title">
-                Autocomplete search
-            </div>
-            <div id="type-selector" class="pac-controls">
-                <input type="radio" name="type" id="changetype-all" checked="checked">
-                <label for="changetype-all">All</label>
-
-                <input type="radio" name="type" id="changetype-establishment">
-                <label for="changetype-establishment">Establishments</label>
-
-                <input type="radio" name="type" id="changetype-address">
-                <label for="changetype-address">Addresses</label>
-
-                <input type="radio" name="type" id="changetype-geocode">
-                <label for="changetype-geocode">Geocodes</label>
-            </div>
-            <div id="strict-bounds-selector" class="pac-controls">
-                <input type="checkbox" id="use-strict-bounds" value="">
-                <label for="use-strict-bounds">Strict Bounds</label>
-            </div>
-        </div>
-        <div id="pac-container">
-            <input id="pac-input" type="text" placeholder="Enter a location">
-        </div>
-    </div> -->
-
-    <!-- <div id="map"></div> -->
-
-    <!-- Another Autocomplete Google Maps Place search -->
-
-    <!-- <div id="infowindow-content">
-        <img src="" width="16" height="16" id="place-icon">
-        <span id="place-name" class="title"></span><br>
-        <span id="place-address"></span>
-    </div> -->
-
-    <!-- Google Maps API Autocomplete Hotel Search -->
-
-    <!-- <div class="hotel-search">
-        <div id="findhotels">
-            Find pubs or restaurants in:
-        </div>
-
-        <div id="locationField">
-            <input id="autocomplete" placeholder="Enter a pub or a restaurant" type="text" />
-        </div>
-
-        <div id="controls">
-            <select id="county">
-            <option value="all">All</option>
-            <option value="Dublin">Dublin</option>
-            <option value="Cork">Cork</option>
-            <option value="Galway">Galway</option>
-          </select>
-        </div>
-    </div>
-
-    <div id="map"></div>
-
-    <div id="listing">
-        <table id="resultsTable">
-            <tbody id="results"></tbody>
-        </table>
-    </div>
-
-    <div style="display: none">
-        <div id="info-content">
-            <table>
-                <tr id="iw-url-row" class="iw_table_row">
-                    <td id="iw-icon" class="iw_table_icon"></td>
-                    <td id="iw-url"></td>
-                </tr>
-                <tr id="iw-address-row" class="iw_table_row">
-                    <td class="iw_attribute_name">Address:</td>
-                    <td id="iw-address"></td>
-                </tr>
-                <tr id="iw-phone-row" class="iw_table_row">
-                    <td class="iw_attribute_name">Telephone:</td>
-                    <td id="iw-phone"></td>
-                </tr>
-                <tr id="iw-rating-row" class="iw_table_row">
-                    <td class="iw_attribute_name">Rating:</td>
-                    <td id="iw-rating"></td>
-                </tr>
-                <tr id="iw-website-row" class="iw_table_row">
-                    <td class="iw_attribute_name">Website:</td>
-                    <td id="iw-website"></td>
-                </tr>
-            </table>
-        </div>
-    </div> -->
-
-    <!-- Google Maps API Autocomplete Only -->
-    <!-- <div class="pac-card" id="pac-card"></div> -->
     <div id="type-selector" class="pac-controls">
         <input type="radio" name="type" id="changetype-all" checked="checked">
         <label for="changetype-all">All</label>
@@ -170,10 +71,19 @@
     <form class="form-inline d-flex justify-content-left md-form form-sm active-cyan active-cyan-2 mt-2">
         <i class="fas fa-search" aria-hidden="true"></i>
         <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search">
-        <select class="form-control form-control-sm ml-3 w-40 selectpicker" id="select-county" data-live-search="true">
-            <option data-tokens="dublin">Dublin</option>
-            <option data-tokens="donegal">Donegal</option>
-            <option data-tokens="mayo">Mayo</option>
+        <label><fontsize="5" color="green">County</fontsize></label>
+        <select class="form-control form-control-sm ml-3 w-40" id="select-county" onchange="update()">
+            <option value="Dublin">Dublin</option>
+            <option value="Donegal" selected="selected">Donegal</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Sligo">Sligo</option>
+            <option value="Galway">Galway</option>
+        </select>
+        <label><fontsize="5" color="green">Establishment</fontsize></label>
+        <select class="form-control form-control-sm ml-3 w-40r" id="select-establishment" onchange="update()">
+            <option value="cafe">Cafe</option>
+            <option value="pub" selected="selected">Pub</option>
+            <option value="restaurant">Restaurant</option>
         </select>
     </form>
     <form>
