@@ -8,6 +8,7 @@ const IRELAND_BOUNDS = {
 var infowindow;
 var markers = [];
 var map;
+var google;
 
 var BOUNDS = {
     lat: 1,
@@ -52,46 +53,127 @@ var countyList = [{
 function update() {
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
-    console.log("County: " + select_county_value);
-    console.log("Establishment: " + select_establishment);
-
     if ((select_county_value != "") && (select_establishment != "")) {
-        var pyrmont = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
-        console.log("Pyrmont: " + pyrmont);
+        // var pyrmont = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
         var key = select_county_value.replace("value", "");
-        console.log("Key: " + key);
-        var current_radius = 0;
+        var current_radius = countyList[0].radius;
 
         for (var i = 0; i < countyList.length; i++) {
-            if (countyList[i].county.toLowerCase().indexOf(key) != "") {
+            if (countyList[i].county == select_county_value) {
+
                 current_radius = countyList[i].radius;
                 pyrmont = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+                break;
             }
         }
+        google.maps.event.addDomListener(window, 'load', initialize(pyrmont));
 
-        var request = {
-            location: pyrmont,
-            radius: current_radius,
-            types: [select_establishment.replace("value", "")]
-        };
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
     }
 }
 
-function initMap() {
-    var pyrmont = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
+function initialize(pyrmont) {
+    var select_county_value = document.getElementById("select-county").value;
+    var select_establishment = document.getElementById("select-establishment").value;
+    if (pyrmont === void 0) {
+        var pyrmont = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
+    }
+    console.log("County: " + select_county_value)
+
+    for (var i = 0; i < countyList.length; i++) {
+        if (countyList[i].county == select_county_value) {
+            console.log("We are in the if statement")
+            current_radius = countyList[i].radius;
+            BOUNDS = {
+                lat: countyList[i].Current_latitude,
+                lng: countyList[i].Current_longitude
+            };
+            console.log("Bounds: " + JSON.stringify(BOUNDS));
+            break;
+        }
+    }
+
     map = new google.maps.Map(document.getElementById("map"), {
         center: pyrmont,
         zoom: 13
     });
 
+
+    //  Autocomplete Section
+    var card = document.getElementById('pac-card');
+    var input = document.getElementById('pac-input');
+    var types = document.getElementById('type-selector');
+    var strictBounds = document.getElementById('strict-bounds-selector');
+
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+    var options = {
+        bounds: BOUNDS,
+        types: ['establishment'],
+        strictBounds: true
+    };
+
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    autocomplete.bindTo('bounds', map);
+    autocomplete.setFields(
+        ['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website']);
+
+    var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+    });
+    // google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    autocomplete.addListener('place_changed', function() {
+        // infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        console.log("Geometry: " + place.geometry)
+        if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+
+        infowindow2 = new google.maps.InfoWindow();
+        infowindowContent = document.getElementById('infowindow-content');
+        infowindow2.setContent(infowindowContent);
+
+
+        console.log("Place: " + JSON.stringify(place));
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17); // Why 17? Because it looks good.
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        }
+
+        infowindowContent.children['place-icon'].src = place.icon;
+        infowindowContent.children['place-name'].textContent = place.name;
+        infowindowContent.children['place-address'].textContent = address;
+        // infowindowContent.children['place-website'].textContent = place.website;
+        infowindow2.open(map, marker);
+    });
+
     var request = {
         location: pyrmont,
-        radius: countyList[0].radius,
-        types: ['restaurant']
+        radius: 5000,
+        types: ["restaurant"]
     };
+
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
@@ -122,148 +204,3 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
-google.maps.event.addDomListener(window, 'load', initMap);
-
-// function initMap() {
-//     getBounds = GetSelectedValue()
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//         // center: { lat: 53.6299294, lng: -7.8969509 },
-//         center: getBounds,
-//         zoom: 12,
-//         restriction: {
-//             latLngBounds: getBounds,
-//             strictBounds: true
-//         },
-//     });
-//     var card = document.getElementById('pac-card');
-//     var input = document.getElementById('pac-input');
-//     var types = document.getElementById('type-selector');
-//     var strictBounds = document.getElementById('strict-bounds-selector');
-
-//     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-//     console.log("Ireland Bounds:" + IRELAND_BOUNDS)
-
-//     // options for bounds
-//     var options = {
-//         bounds: getBounds,
-//         types: ['establishment'],
-//         strictBounds: true
-//     };
-//     // var options = {
-//     //     bounds: BOUNDS,
-//     //     types: ['establishment'],
-//     //     strictBounds: true
-//     // };
-
-//     var autocomplete = new google.maps.places.Autocomplete(input, options);
-
-//     // Bind the map's bounds (viewport) property to the autocomplete object,
-//     // so that the autocomplete requests use the current map bounds for the
-//     // bounds option in the request.
-//     autocomplete.bindTo('bounds', map);
-
-//     // Set the data fields to return when the user selects a place.
-//     autocomplete.setFields(
-//         ['address_components', 'geometry', 'icon', 'name']);
-
-//     var infowindow = new google.maps.InfoWindow();
-//     var infowindowContent = document.getElementById('infowindow-content');
-//     infowindow.setContent(infowindowContent);
-//     var marker = new google.maps.Marker({
-//         map: map,
-//         anchorPoint: new google.maps.Point(0, -29)
-//     });
-
-//     autocomplete.addListener('place_changed', function() {
-//         infowindow.close();
-//         marker.setVisible(false);
-//         var place = autocomplete.getPlace();
-//         if (!place.geometry) {
-//             // User entered the name of a Place that was not suggested and
-//             // pressed the Enter key, or the Place Details request failed.
-//             window.alert("No details available for input: '" + place.name + "'");
-//             return;
-//         }
-
-//         // If the place has a geometry, then present it on a map.
-//         if (place.geometry.viewport) {
-//             map.fitBounds(place.geometry.viewport);
-//         } else {
-//             map.setCenter(place.geometry.location);
-//             map.setZoom(17); // Why 17? Because it looks good.
-//         }
-//         marker.setPosition(place.geometry.location);
-//         marker.setVisible(true);
-
-//         var address = '';
-//         if (place.address_components) {
-//             address = [
-//                 (place.address_components[0] && place.address_components[0].short_name || ''),
-//                 (place.address_components[1] && place.address_components[1].short_name || ''),
-//                 (place.address_components[2] && place.address_components[2].short_name || '')
-//             ].join(' ');
-//         }
-
-//         infowindowContent.children['place-icon'].src = place.icon;
-//         infowindowContent.children['place-name'].textContent = place.name;
-//         infowindowContent.children['place-address'].textContent = address;
-//         infowindow.open(map, marker);
-//     });
-
-//     // Sets a listener on a radio button to change the filter type on Places
-//     // Autocomplete.
-//     function setupClickListener(id, types) {
-//         var radioButton = document.getElementById(id);
-//         radioButton.addEventListener('click', function() {
-//             autocomplete.setTypes(types);
-//         });
-//     }
-
-//     setupClickListener('changetype-all', []);
-//     setupClickListener('changetype-address', ['address']);
-//     setupClickListener('changetype-establishment', ['establishment']);
-//     setupClickListener('changetype-geocode', ['geocode']);
-
-//     document.getElementById('use-strict-bounds')
-//         .addEventListener('click', function() {
-//             console.log('Checkbox clicked! New state=' + this.checked);
-//             // autocomplete.setOptions({ strictBounds: this.checked });
-//             autocomplete.setOptions({ strictBounds: true });
-//         });
-// }
-
-function GetSelectedValue() {
-    var e = document.getElementById("select-county");
-    var result = e.options[e.selectedIndex].value;
-
-    if (result == "Dublin") {
-        BOUNDS = {
-            lat: 53.3498,
-            lng: -6.2603
-        };
-    } else if (result == "Mayo") {
-        BOUNDS = {
-            lat: 54.0153,
-            lng: -9.4289
-        };
-    } else {
-        BOUNDS = {
-            lat: 54.6538,
-            lng: -8.1096
-        }
-    }
-    return BOUNDS;
-}
-
-function GetSelectedText() {
-    var e = document.getElementById("select-county");
-    var result = e.options[e.selectedIndex].text;
-
-    document.getElementById("result").innerHTML = result;
-}
-
-// $(function() {
-//     $('.selectpicker').selectpicker();
-// });
