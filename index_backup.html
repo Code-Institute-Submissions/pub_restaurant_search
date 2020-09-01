@@ -46,13 +46,58 @@
             </div>
         </nav>
     </header>
+    <!-- <div id="type-selector" class="pac-controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked">
+        <label for="changetype-all">All</label>
+
+        <input type="radio" name="type" id="changetype-establishment">
+        <label for="changetype-establishment">Establishments</label>
+
+        <input type="radio" name="type" id="changetype-address">
+        <label for="changetype-address">Addresses</label>
+
+        <input type="radio" name="type" id="changetype-geocode">
+        <label for="changetype-geocode">Geocodes</label>
+    </div>
+    <div id="strict-bounds-selector" class="pac-controls">
+        <input type="checkbox" id="use-strict-bounds" value="">
+        <label for="use-strict-bounds">Strict Bounds</label>
+    </div>
+    </div> -->
     <!-- <div id="pac-container">
         <input id="pac-input" type="text" placeholder="Enter a location">
     </div> -->
     <!-- Search form -->
-    <form class="form-inline d-flex justify-content-left md-form form-sm active-cyan active-cyan-2 mt-2">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
+    <!-- <form class="form-inline d-flex justify-content-left md-form form-sm active-cyan active-cyan-2 mt-2"> -->
+    <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+    <div class="Card">
+        <div class="CardInner">
+            <label>Search for your favorite bar, restaurant, or cafe</label>
+            <div class="container">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#657789" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="InputContainer">
+                    <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search">
+                    <label><fontsize="5" color="green">County</fontsize></label>
+                    <select class="form-control form-control-sm ml-3 w-40" id="select-county" onchange="update()">
+                            <option value="Dublin">Dublin</option>
+                            <option value="Donegal" selected="selected">Donegal</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Sligo">Sligo</option>
+                            <option value="Galway">Galway</option>
+                        </select>
+                    <label><fontsize="5" color="green">Establishment</fontsize></label>
+                    <select class="form-control form-control-sm ml-3 w-40r" id="select-establishment" onchange="update()">
+                            <option value="cafe">Cafe</option>
+                            <option value="pub">Pub</option>
+                            <option value="restaurant">Restaurant</option>
+                        </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search">
         <label><fontsize="5" color="green">County</fontsize></label>
         <select class="form-control form-control-sm ml-3 w-40" id="select-county" onchange="update()">
             <option value="Dublin">Dublin</option>
@@ -66,7 +111,10 @@
             <option value="cafe">Cafe</option>
             <option value="pub">Pub</option>
             <option value="restaurant">Restaurant</option>
-        </select>
+        </select> -->
+    <!-- </form> -->
+    <form>
+
     </form>
     </div>
 

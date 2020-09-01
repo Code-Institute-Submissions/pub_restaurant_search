@@ -92,17 +92,16 @@ function initialize(pyrmont) {
         }
     }
 
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: pyrmont,
-        zoom: 13
-    });
-
-
-    //  Autocomplete Section
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
     var types = document.getElementById('type-selector');
     var strictBounds = document.getElementById('strict-bounds-selector');
+
+    // Map bit
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: pyrmont,
+        zoom: 13
+    });
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -112,36 +111,28 @@ function initialize(pyrmont) {
         strictBounds: true
     };
 
+    // Autocomplete bit
     autocomplete = new google.maps.places.Autocomplete(input, options);
-
     autocomplete.bindTo('bounds', map);
     autocomplete.setFields(
         ['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website']);
-
-    var marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29)
-    });
-    // google.maps.event.addListener(autocomplete, 'place_changed', function() {
     autocomplete.addListener('place_changed', function() {
-        // infowindow.close();
+        selected = true
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
         marker.setVisible(false);
         var place = autocomplete.getPlace();
-        console.log("Geometry: " + place.geometry)
         if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
             return;
         }
 
-        infowindow2 = new google.maps.InfoWindow();
+        // InfoWindow bit
+        infowindowAutoComplete = new google.maps.InfoWindow();
         infowindowContent = document.getElementById('infowindow-content');
-        infowindow2.setContent(infowindowContent);
-
-
-        console.log("Place: " + JSON.stringify(place));
-
+        infowindowAutoComplete.setContent(infowindowContent);
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
@@ -165,7 +156,7 @@ function initialize(pyrmont) {
         infowindowContent.children['place-name'].textContent = place.name;
         infowindowContent.children['place-address'].textContent = address;
         // infowindowContent.children['place-website'].textContent = place.website;
-        infowindow2.open(map, marker);
+        infowindowAutoComplete.open(map, marker);
     });
 
     var request = {
