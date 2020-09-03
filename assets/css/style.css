@@ -59,6 +59,11 @@ nav ul li a {
     background-color: #f5f5f5;
 }
 
+#infowindow-content {
+    font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+}
+
 #select-establishment {
     font-weight: 300;
     margin-left: 12px;

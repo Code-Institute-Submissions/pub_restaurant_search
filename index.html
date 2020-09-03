@@ -55,8 +55,8 @@
         <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
         <label><fontsize="5" color="green">County</fontsize></label>
         <select class="form-control form-control-sm ml-3 w-40" id="select-county" onchange="update()">
-            <option value="Dublin">Dublin</option>
-            <option value="Donegal" selected="selected">Donegal</option>
+            <option value="Dublin" selected="selected">Dublin</option>
+            <option value="Donegal">Donegal</option>
             <option value="Mayo">Mayo</option>
             <option value="Sligo">Sligo</option>
             <option value="Galway">Galway</option>
@@ -72,9 +72,15 @@
 
     <div id="map"></div>
     <div id="infowindow-content">
-        <img src="" width="16" height="16" id="place-icon">
-        <span id="place-name" class="title"></span><br>
-        <span id="place-address"></span>
+        <img src="" width="30" height="30" id="place-icon">
+        <span id="place-name" class="title">Name:  </span><br>
+        <span id="place-address">Address: </span><br>
+        <span id="place-vicinity">Address: </span><br>
+        <span id="place-phone">Phone: </span><br>
+        <span id="place-website" target="_blank">Website: </span><br>
+        <span id="place-rating">Rating: </span><br>
+        <span id="place-user-rating-total">Total Ratings: </span><br>
+        <span id="place-price-level">Price Level: </span><br>
     </div>
 
     <footer>

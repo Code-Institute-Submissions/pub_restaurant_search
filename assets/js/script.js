@@ -1,3 +1,6 @@
+// I am getting two autocomplete options, one from default (Dublin) and the second one (the one which I switch to via county or establishment switcher)
+// Need to figure out why is that? When I get the result from county, it works, however if I select from the second option (the defualt Dublin one)
+// then it gives me an error for children geometry and other shit errors
 const IRELAND_BOUNDS = {
     north: 55.33539361,
     south: 51.4266145,
@@ -9,6 +12,7 @@ var infowindow;
 var markers = [];
 var map;
 var google;
+let popup, Popup;
 
 var BOUNDS = {
     lat: 1,
@@ -51,6 +55,7 @@ var countyList = [{
 ];
 
 function update() {
+    console.log("Number 1");
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
     if ((select_county_value != "") && (select_establishment != "")) {
@@ -72,6 +77,14 @@ function update() {
 }
 
 function initialize(pyrmont) {
+    var i = 0;
+    console.log("Number 2");
+    console.log("i = " + i);
+    if (i == 0) {
+        document.getElementById("infowindow-content").style.visibility = "hidden";
+    } else {
+        console.log("Hello again sexy");
+    }
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
     if (pyrmont === void 0) {
@@ -100,7 +113,7 @@ function initialize(pyrmont) {
     // Map bit
     map = new google.maps.Map(document.getElementById("map"), {
         center: pyrmont,
-        zoom: 13
+        zoom: 13,
     });
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
@@ -114,22 +127,28 @@ function initialize(pyrmont) {
     // Autocomplete bit
     autocomplete = new google.maps.places.Autocomplete(input, options);
     autocomplete.bindTo('bounds', map);
-    autocomplete.setFields(
-        ['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website']);
+    autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website', 'formatted_address', 'formatted_phone_number', 'photos', 'price_level', 'reviews', 'user_ratings_total', 'vicinity']);
     autocomplete.addListener('place_changed', function() {
-        selected = true
-        var marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29)
-        });
-        marker.setVisible(false);
+        console.log("Number 3");
+        if (i === 1) {
+            console.log("Hello sexy");
+        } else {
+            result = document.getElementById("infowindow-content");
+            result.style.visibility = "visible";
+            i++;
+        }
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             window.alert("No details available for input: '" + place.name + "'");
             return;
         }
+        // console.log("Place: " + JSON.stringify(place));
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
 
-        // InfoWindow bit
+        // InforWindow Bit
         infowindowAutoComplete = new google.maps.InfoWindow();
         infowindowContent = document.getElementById('infowindow-content');
         infowindowAutoComplete.setContent(infowindowContent);
@@ -141,7 +160,7 @@ function initialize(pyrmont) {
             map.setZoom(17); // Why 17? Because it looks good.
         }
         marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
+        marker.setVisible(false);
 
         var address = '';
         if (place.address_components) {
@@ -152,17 +171,31 @@ function initialize(pyrmont) {
             ].join(' ');
         }
 
+        console.log("Name: " + place.name);
+        // console.log("Address: " + place.address);
+        console.log("Vicinity: " + place.vicinity);
+        console.log("Phone: " + place.formatted_phone_number);
+        console.log("Website: " + place.website);
+        console.log("Rating: " + place.rating);
+        console.log("Ratings: " + place.user_ratings_total);
+        console.log("Price: " + place.price_level);
+
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
-        infowindowContent.children['place-address'].textContent = address;
-        // infowindowContent.children['place-website'].textContent = place.website;
+        // infowindowContent.children['place-address'].textContent = address;
+        infowindowContent.children['place-vicinity'].textContent = place.vicinity;
+        infowindowContent.children['place-phone'].textContent = place.formatted_phone_number;
+        infowindowContent.children['place-website'].textContent = place.website;
+        infowindowContent.children['place-rating'].textContent = place.rating;
+        infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
+        infowindowContent.children['place-price-level'].textContent = place.price_level;
         infowindowAutoComplete.open(map, marker);
     });
 
     var request = {
         location: pyrmont,
         radius: 5000,
-        types: ["restaurant"]
+        types: ["establishment"]
     };
 
     infowindow = new google.maps.InfoWindow();
