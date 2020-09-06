@@ -13,6 +13,7 @@ var markers = [];
 var map;
 var google;
 let popup, Popup;
+var k = 0;
 
 var BOUNDS = {
     lat: 1,
@@ -71,26 +72,29 @@ function update() {
                 break;
             }
         }
-        google.maps.event.addDomListener(window, 'load', initialize(pyrmont));
+
+        infowindowAutoComplete = new google.maps.InfoWindow();
+        infowindowContent = document.getElementById('infowindow-content');
+        infowindowAutoComplete.setContent(infowindowContent);
+        console.log("OnUpdate: " + infowindowContent);
+        onUpdate = true;
+
+        google.maps.event.addDomListener(window, 'load', initialize(pyrmont, infowindowContent, onUpdate));
 
     }
 }
 
-function initialize(pyrmont) {
-    var i = 0;
+function initialize(pyrmont, infowindowContent, onUpdate) {
     console.log("Number 2");
-    console.log("i = " + i);
-    if (i == 0) {
+    console.log("k = " + k);
+    if (k == 0) {
+        console.log("We are setting the inforwindow content style to hidden")
         document.getElementById("infowindow-content").style.visibility = "hidden";
     } else {
         console.log("Hello again sexy");
     }
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
-    if (pyrmont === void 0) {
-        var pyrmont = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
-    }
-    console.log("County: " + select_county_value)
 
     for (var i = 0; i < countyList.length; i++) {
         if (countyList[i].county == select_county_value) {
@@ -104,6 +108,15 @@ function initialize(pyrmont) {
             break;
         }
     }
+
+    if (pyrmont === void 0) {
+        console.log("Pyrmont in initialize is empty. We are setting one based on country value: " + countyList[i])
+        var pyrmont = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+    } else {
+        console.log("Pyrmont is set. We can continue without setting one in initialize")
+        console.log("Pyrmont: " + pyrmont)
+    }
+    console.log("County: " + select_county_value)
 
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
@@ -130,14 +143,27 @@ function initialize(pyrmont) {
     autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website', 'formatted_address', 'formatted_phone_number', 'photos', 'price_level', 'reviews', 'user_ratings_total', 'vicinity']);
     autocomplete.addListener('place_changed', function() {
         console.log("Number 3");
-        if (i === 1) {
+        // InforWindow Bit
+        if (onUpdate) {
+            console.log("We are using infoWindow from onUpdate function: " + infowindowContent)
+        } else {
+            infowindowAutoComplete = new google.maps.InfoWindow();
+            infowindowContent = document.getElementById('infowindow-content');
+            infowindowAutoComplete.setContent(infowindowContent);
+            console.log("We are using new infoWindow: " + infowindowContent);
+        }
+
+        if (k === 1) {
             console.log("Hello sexy");
+            console.log("result: " + infowindowContent);
+            // infowindowContent.style.visibility = "visible";
         } else {
             result = document.getElementById("infowindow-content");
             result.style.visibility = "visible";
-            i++;
+            k++;
         }
         var place = autocomplete.getPlace();
+        // console.log("Place: " + JSON.stringify(place));
         if (!place.geometry) {
             window.alert("No details available for input: '" + place.name + "'");
             return;
@@ -148,10 +174,7 @@ function initialize(pyrmont) {
             anchorPoint: new google.maps.Point(0, -29)
         });
 
-        // InforWindow Bit
-        infowindowAutoComplete = new google.maps.InfoWindow();
-        infowindowContent = document.getElementById('infowindow-content');
-        infowindowAutoComplete.setContent(infowindowContent);
+
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
