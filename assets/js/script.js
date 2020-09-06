@@ -72,12 +72,15 @@ function update() {
                 break;
             }
         }
-
-        infowindowAutoComplete = new google.maps.InfoWindow();
-        infowindowContent = document.getElementById('infowindow-content');
-        infowindowAutoComplete.setContent(infowindowContent);
-        console.log("OnUpdate: " + infowindowContent);
-        onUpdate = true;
+        try {
+            infowindowAutoComplete = new google.maps.InfoWindow();
+            infowindowContent = document.getElementById('infowindow-content');
+            infowindowAutoComplete.setContent(infowindowContent);
+            console.log("OnUpdate: " + infowindowContent);
+            onUpdate = true;
+        } catch (err) {
+            infowindowContent = document.getElementById('infowindow-content') = err.message;
+        }
 
         google.maps.event.addDomListener(window, 'load', initialize(pyrmont, infowindowContent, onUpdate));
 
@@ -88,11 +91,12 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
     console.log("Number 2");
     console.log("k = " + k);
     if (k == 0) {
-        console.log("We are setting the inforwindow content style to hidden")
+        // console.log("We are setting the inforwindow content style to hidden")
         document.getElementById("infowindow-content").style.visibility = "hidden";
-    } else {
-        console.log("Hello again sexy");
     }
+    // else {
+    //     console.log("Hello again sexy");
+    // }
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
 
@@ -197,11 +201,11 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
         console.log("Name: " + place.name);
         // console.log("Address: " + place.address);
         console.log("Vicinity: " + place.vicinity);
-        console.log("Phone: " + place.formatted_phone_number);
-        console.log("Website: " + place.website);
-        console.log("Rating: " + place.rating);
-        console.log("Ratings: " + place.user_ratings_total);
-        console.log("Price: " + place.price_level);
+        // console.log("Phone: " + place.formatted_phone_number);
+        // console.log("Website: " + place.website);
+        // console.log("Rating: " + place.rating);
+        // console.log("Ratings: " + place.user_ratings_total);
+        // console.log("Price: " + place.price_level);
 
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
