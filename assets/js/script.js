@@ -14,11 +14,12 @@ var map;
 var google;
 let popup, Popup;
 var k = 0;
+var input;
 
-var BOUNDS = {
-    lat: 1,
-    lng: 1
-}
+// var BOUNDS = {
+//     lat: 1,
+//     lng: 1
+// }
 
 var countyList = [{
         "county": "Dublin",
@@ -57,19 +58,21 @@ var countyList = [{
 
 function updateCounty() {
     var select_county_value = document.getElementById("select-county").value;
+    console.log("County value in updateCounty" + select_county_value);
     var select_establishment = document.getElementById("select-establishment").value;
-    if ((select_county_value != "") && (select_establishment != "")) {
-        var key = select_county_value.replace("value", "");
-        var current_radius = countyList[0].radius;
+    if (select_county_value != "") {
+        // var key = select_county_value.replace("value", "");
+        // var current_radius = countyList[0].radius;
 
         for (var i = 0; i < countyList.length; i++) {
             if (countyList[i].county == select_county_value) {
 
                 current_radius = countyList[i].radius;
-                pyrmont = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+                geoLocation = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
                 break;
             }
         }
+
         try {
             infowindowAutoComplete = new google.maps.InfoWindow();
             infowindowContent = document.getElementById('infowindow-content');
@@ -77,28 +80,61 @@ function updateCounty() {
             console.log("OnUpdate: " + infowindowContent);
             onUpdate = true;
         } catch (err) {
-            infowindowContent = document.getElementById('infowindow-content') = err.message;
+            console.log("ERROR: " + err.message);
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize(pyrmont, infowindowContent, onUpdate));
+        google.maps.event.addDomListener(window, 'load', initialize(geoLocation, infowindowContent, onUpdate));
 
     }
 }
 
-function initialize(pyrmont, infowindowContent, onUpdate) {
+function updateEstablishment() {
+    var select_establishment = document.getElementById("select-establishment").value;
+    console.log("Establishment value in updateEstablishment" + select_establishment);
+    if (select_establishment != "") {
+        // var key = select_county_value.replace("value", "");
+        // var current_radius = countyList[0].radius;
+        var select_county_value = document.getElementById("select-county").value;
+        for (var i = 0; i < countyList.length; i++) {
+            if (countyList[i].county == select_county_value) {
+
+                current_radius = countyList[i].radius;
+                geoLocation = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+                break;
+            }
+        }
+
+        try {
+            infowindowAutoComplete = new google.maps.InfoWindow();
+            infowindowContent = document.getElementById('infowindow-content');
+            infowindowAutoComplete.setContent(infowindowContent);
+            console.log("OnUpdate: " + infowindowContent);
+            onUpdate = true;
+        } catch (err) {
+            console.log("ERROR: " + err.message);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize(geoLocation, infowindowContent, onUpdate));
+
+    }
+}
+
+function initialize(geoLocation, infowindowContent, onUpdate) {
+    var card = document.getElementById('pac-card');
+    var input = document.getElementById('pac-input');
+    var types = document.getElementById('select-establishment');
+    var strictBounds = document.getElementById('strict-bounds-selector');
+
     if (k == 0) {
-        // console.log("We are setting the inforwindow content style to hidden")
         document.getElementById("infowindow-content").style.visibility = "hidden";
     }
-    // else {
-    //     console.log("Hello again sexy");
-    // }
+
     var select_county_value = document.getElementById("select-county").value;
-    var select_establishment = document.getElementById("select-establishment").value;
+    // var select_establishment = document.getElementById("select-establishment").value;
+    console.log("County value in initialize: " + select_county_value);
 
     for (var i = 0; i < countyList.length; i++) {
         if (countyList[i].county == select_county_value) {
-            console.log("We are in the if statement")
             current_radius = countyList[i].radius;
             BOUNDS = {
                 lat: countyList[i].Current_latitude,
@@ -109,23 +145,16 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
         }
     }
 
-    if (pyrmont === void 0) {
-        console.log("Pyrmont in initialize is empty. We are setting one based on country value: " + countyList[i])
-        var pyrmont = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+    if (geoLocation === void 0) {
+        var geoLocation = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
     } else {
-        console.log("Pyrmont is set. We can continue without setting one in initialize")
-        console.log("Pyrmont: " + pyrmont)
+        console.log("geoLocation: " + geoLocation)
     }
     console.log("County: " + select_county_value)
 
-    var card = document.getElementById('pac-card');
-    var input = document.getElementById('pac-input');
-    var types = document.getElementById('type-selector');
-    var strictBounds = document.getElementById('strict-bounds-selector');
-
     // Map bit
     map = new google.maps.Map(document.getElementById("map"), {
-        center: pyrmont,
+        center: geoLocation,
         zoom: 13,
     });
 
@@ -134,28 +163,17 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
     var options = {
         bounds: BOUNDS,
         types: ['establishment'],
+        // types: types,
         strictBounds: true
     };
 
 
     if (onUpdate) {
-        console.log("We are using infoWindow from onUpdate function: " + infowindowContent)
+        console.log("")
     } else {
         infowindowAutoComplete = new google.maps.InfoWindow();
         infowindowContent = document.getElementById('infowindow-content');
         infowindowAutoComplete.setContent(infowindowContent);
-        console.log("We are using new infoWindow: " + infowindowContent);
-    }
-
-    // InforWindow Bit
-    if (k === 1) {
-        console.log("Hello sexy");
-        console.log("result: " + infowindowContent);
-        // infowindowContent.style.visibility = "visible";
-    } else {
-        result = document.getElementById("infowindow-content");
-        result.style.visibility = "visible";
-        k++;
     }
 
     var marker = new google.maps.Marker({
@@ -167,26 +185,42 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
     autocomplete = new google.maps.places.Autocomplete(input, options);
     autocomplete.bindTo('bounds', map);
     autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website', 'formatted_address', 'formatted_phone_number', 'photos', 'price_level', 'reviews', 'user_ratings_total', 'vicinity']);
-    autocomplete.addListener('place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        // value = $("#pac-input").val('');
+        // console.log("Value in place_changed: " + value);
+
+        // This piece of code might be the correct one
+        // Test tomorrow
+        // google.maps.event.clearInstanceListeners(autocomplete);
+
+
         infowindowAutoComplete.close();
         marker.setVisible(false);
-
         var place = autocomplete.getPlace();
+        var select_county_value = document.getElementById("select-county").value;
+        console.log("County value in place changed: " + select_county_value);
+
+        if (k === 1) {
+            console.log("result: " + infowindowContent);
+        } else {
+            result = document.getElementById("infowindow-content");
+            result.style.visibility = "visible";
+            k++;
+        }
+
         // console.log("Place: " + JSON.stringify(place));
         if (!place.geometry) {
             window.alert("No details available for input: '" + place.name + "'");
             return;
         }
-        // console.log("Place: " + JSON.stringify(place));
-
-
 
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
+            console.log("Bounds: " + map.getBounds());
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17); // Why 17? Because it looks good.
+            map.setZoom(17);
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(false);
@@ -212,25 +246,33 @@ function initialize(pyrmont, infowindowContent, onUpdate) {
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
         // infowindowContent.children['place-address'].textContent = address;
-        infowindowContent.children['place-vicinity'].textContent = place.vicinity;
-        infowindowContent.children['place-phone'].textContent = place.formatted_phone_number;
-        infowindowContent.children['place-website'].textContent = place.website;
-        infowindowContent.children['place-rating'].textContent = place.rating;
-        infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
-        infowindowContent.children['place-price-level'].textContent = place.price_level;
+        // infowindowContent.children['place-vicinity'].textContent = place.vicinity;
+        // infowindowContent.children['place-phone'].textContent = place.formatted_phone_number;
+        // infowindowContent.children['place-website'].textContent = place.website;
+        // infowindowContent.children['place-rating'].textContent = place.rating;
+        // infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
+        // infowindowContent.children['place-price-level'].textContent = place.price_level;
         infowindowAutoComplete.open(map, marker);
     });
 
-    // var request = {
-    //     location: pyrmont,
-    //     radius: 5000,
-    //     types: ["establishment"]
-    // };
+    // map.fitBounds(place.geometry.viewport);
+    console.log("Bounds: " + map.getBounds());
+    google.maps.event.trigger(input, 'blur');
+    google.maps.event.clearInstanceListeners(input);
 
-    // infowindow = new google.maps.InfoWindow();
-    // var service = new google.maps.places.PlacesService(map);
-    // service.nearbySearch(request, callback);
+    var request = {
+        location: geoLocation,
+        radius: 5000,
+        // types: ["restauraunts"]
+        types: types
+    };
+
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
 }
+
+
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
