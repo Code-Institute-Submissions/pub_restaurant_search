@@ -12,6 +12,8 @@ var google;
 let popup, Popup;
 var k = 0;
 var input;
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
 var searchTypesBar = 'bar'
 var searchTypeLibrary = 'library'
 var searchTypePark = 'park'
@@ -215,6 +217,7 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
     type = [select_establishment]
 
     var request = {
+        // keyword: 'pub',
         location: geoLocation,
         radius: 10000,
         types: type
@@ -222,7 +225,26 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
+
     service.nearbySearch(request, callback);
+
+    // service.nearbySearch(request, callBackResults);
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        addMarker(event.latLng, map);
+    });
+
+    addMarker(geoLocation, map);
+}
+
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    var marker = new google.maps.Marker({
+        position: location,
+        label: labels[labelIndex++ % labels.length],
+        map: map
+    });
 }
 
 function callback(results, status) {
@@ -232,30 +254,96 @@ function callback(results, status) {
         }
 
         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            if (results[i].name.indexOf("Hotel") != -1) {
+                console.log("Marker Includes Hotel in its name: " + JSON.stringify(results[i].name));
+            } else {
+                createMarker(results[i]);
+            }
         }
     }
 }
 
+function callBackResults(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        createMarkers(results, map);
+    }
+}
+
 function createMarker(place) {
+    const bounds = new google.maps.LatLngBounds();
     var placeLoc = place.geometry.location;
+    const image = {
+        url: place.icon,
+        size: new google.maps.Size(75, 75),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+    };
     var marker = new google.maps.Marker({
         map: map,
-        // icon: {
-        //     path: google.maps.SymbolPath.CIRCLE,
-        //     scale: 2,
-        //     opacity: 1,
-        //     fillColor: 'red',
-        //     fillOpacity: 1,
-        //     strokeColor: 'red',
-        //     strokeWeight: 1
-        // },
+        draggable: true,
+        icon: image,
+        animation: google.maps.Animation.DROP,
         position: place.geometry.location
     });
+    bounds.extend(place.geometry.location);
+
+    marker.addListener('click', toggleBounce);
+
+    function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
 
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
+}
+
+function drop() {
+    for (var i = 0; i < markerArray.length; i++) {
+        setTimeout(function() {
+            addMarkerMethod();
+        }, i * 200);
+    }
+}
+
+function createMarkers(places, map) {
+    const bounds = new google.maps.LatLngBounds();
+    const placesList = document.getElementById("places");
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    for (let i = 0, place;
+        (place = places[i]); i++) {
+        if (place.name.indexOf("Hotel") != -1) {
+            console.log("Marker Includes Hotel in its name: " + JSON.stringify(place.name));
+        } else {
+            // createMarker(results[i]);
+            const image = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+            new google.maps.Marker({
+                map,
+                icon: image,
+                title: place.name,
+                position: place.geometry.location
+            });
+            const li = document.createElement("li");
+            li.textContent = place.name;
+            placesList.appendChild(li);
+            bounds.extend(place.geometry.location);
+        }
+
+    }
+    map.fitBounds(bounds);
 }
