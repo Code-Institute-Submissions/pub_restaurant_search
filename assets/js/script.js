@@ -141,19 +141,10 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-    if (select_establishment == searchTypesBar) {
-        console.log("We are searching for Pubs")
-        keyword = searchTypesBar
-    } else if (select_establishment == searchTypeCafe) {
-        console.log("We are searching for Cafes")
-        keyword = searchTypeCafe
-    } else {
-        console.log("We are searching for restaurnats")
-        keyword = searchTypeRestaurant
-    }
+    getEstablishmentKeyword = getEstablishment(select_establishment);
 
     var options = {
-        keyword: keyword,
+        keyword: getEstablishmentKeyword,
         bounds: BOUNDS,
         types: ['establishment'],
         strictBounds: true
@@ -195,9 +186,9 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
+            map.setZoom(17);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(false);
@@ -227,9 +218,10 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
     google.maps.event.clearInstanceListeners(input);
 
     type = [select_establishment]
+    getEstablishmentKeyword = getEstablishment(select_establishment);
 
     var request = {
-        // keyword: 'pub',
+        keyword: getEstablishmentKeyword,
         location: geoLocation,
         radius: 10000,
         types: type
@@ -240,13 +232,24 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     service.nearbySearch(request, callback);
 
-    // service.nearbySearch(request, callBackResults);
-
     google.maps.event.addListener(map, 'click', function(event) {
         addMarker(event.latLng, map);
     });
 
     addMarker(geoLocation, map);
+}
+
+function getEstablishment(select_establishment) {
+    if (select_establishment == searchTypesBar) {
+        console.log("We are searching for Pubs")
+        return searchTypesBar
+    } else if (select_establishment == searchTypeCafe) {
+        console.log("We are searching for Cafes")
+        return searchTypeCafe
+    } else {
+        console.log("We are searching for restaurnats")
+        return searchTypeRestaurant
+    }
 }
 
 function addMarker(location, map) {
@@ -261,9 +264,8 @@ function addMarker(location, map) {
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
+        clearResults();
+        clearMarkers();
 
         for (var i = 0; i < results.length; i++) {
             if (results[i].name.indexOf("Hotel") != -1) {
@@ -275,11 +277,6 @@ function callback(results, status) {
     }
 }
 
-function callBackResults(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        createMarkers(results, map);
-    }
-}
 
 function createMarker(place) {
     const bounds = new google.maps.LatLngBounds();
@@ -325,37 +322,19 @@ function drop() {
     }
 }
 
-function createMarkers(places, map) {
-    const bounds = new google.maps.LatLngBounds();
-    const placesList = document.getElementById("places");
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(null);
-    }
-    for (let i = 0, place;
-        (place = places[i]); i++) {
-        if (place.name.indexOf("Hotel") != -1) {
-            console.log("Marker Includes Hotel in its name: " + JSON.stringify(place.name));
-        } else {
-            // createMarker(results[i]);
-            const image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-            new google.maps.Marker({
-                map,
-                icon: image,
-                title: place.name,
-                position: place.geometry.location
-            });
-            const li = document.createElement("li");
-            li.textContent = place.name;
-            placesList.appendChild(li);
-            bounds.extend(place.geometry.location);
-        }
+function clearResults() {
+    const results = document.getElementById("results");
 
+    while (results.childNodes[0]) {
+        results.removeChild(results.childNodes[0]);
     }
-    map.fitBounds(bounds);
+}
+
+function clearMarkers() {
+    for (let i = 0; i < markers.length; i++) {
+        if (markers[i]) {
+            markers[i].setMap(null);
+        }
+    }
+    markers = [];
 }
