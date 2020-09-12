@@ -144,7 +144,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
     getEstablishmentKeyword = getEstablishment(select_establishment);
 
     var options = {
-        keyword: getEstablishmentKeyword,
         bounds: BOUNDS,
         types: ['establishment'],
         strictBounds: true
