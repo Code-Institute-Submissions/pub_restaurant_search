@@ -72,21 +72,50 @@
     </div>
 
     <div id="map"></div>
-    <div id="infowindow-content">
-        <img src="" width="30" height="30" id="place-icon">
-        <span id="place-name" class="title">Name:  </span><br>
-        <span id="place-address">Address: </span><br>
-        <span id="place-vicinity">Address: </span><br>
-        <span id="place-phone">Phone: </span><br>
-        <span id="place-website" target="_blank">Website: </span><br>
-        <span id="place-rating">Rating: </span><br>
-        <span id="place-user-rating-total">Total Ratings: </span><br>
-        <span id="place-price-level">Price Level: </span><br>
+    <div style="display: none">
+        <div id="infowindow-content">
+            <img src="" width="30" height="30" id="place-icon">
+            <span id="place-name" class="title">Name:  </span><br>
+            <span id="place-address">Address: </span><br>
+            <span id="place-vicinity">Address: </span><br>
+            <span id="place-phone">Phone: </span><br>
+            <span id="place-website" target="_blank">Website: </span><br>
+            <span id="place-rating">Rating: </span><br>
+            <span id="place-user-rating-total">Total Ratings: </span><br>
+            <span id="place-price-level">Price Level: </span><br>
+        </div>
     </div>
     <div id="listing">
         <table id="resultsTable">
             <tbody id="results"></tbody>
         </table>
+    </div>
+
+    <div style="display: none">
+        <div id="info-content">
+            <table>
+                <tr id="iw-url-row" class="iw_table_row">
+                    <td id="iw-icon" class="iw_table_icon"></td>
+                    <td id="iw-url"></td>
+                </tr>
+                <tr id="iw-address-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Address:</td>
+                    <td id="iw-address"></td>
+                </tr>
+                <tr id="iw-phone-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Telephone:</td>
+                    <td id="iw-phone"></td>
+                </tr>
+                <tr id="iw-rating-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Rating:</td>
+                    <td id="iw-rating"></td>
+                </tr>
+                <tr id="iw-website-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Website:</td>
+                    <td id="iw-website"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <footer>

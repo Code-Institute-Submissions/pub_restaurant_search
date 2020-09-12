@@ -17,6 +17,8 @@ var labelIndex = 0;
 var searchTypesBar = 'bar'
 var searchTypeCafe = 'cafe'
 var searchTypeRestaurant = 'restaurant'
+const MARKER_PATH =
+    "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 
 var countyList = [{
         "county": "Dublin",
@@ -145,7 +147,7 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     var options = {
         bounds: BOUNDS,
-        types: ['establishment'],
+        types: ["establishment"],
         strictBounds: true
     };
 
@@ -160,16 +162,20 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
+    var places = new google.maps.places.PlacesService(map);
+
     // Autocomplete bit
     autocomplete = new google.maps.places.Autocomplete(input, options);
-    autocomplete.bindTo('bounds', map);
+    // autocomplete.bindTo('bounds', map);
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+        autocomplete.bindTo('bounds', map);
+    });
     autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', 'opening_hours', 'place_id', 'rating', 'website', 'formatted_address', 'formatted_phone_number', 'photos', 'price_level', 'reviews', 'user_ratings_total', 'vicinity']);
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
         infowindowAutoComplete.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
-        var select_county_value = document.getElementById("select-county").value;
 
         if (k != 1) {
             result = document.getElementById("infowindow-content");
@@ -182,9 +188,11 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
             return;
         }
 
+        type = [select_establishment]
+        getEstablishmentKeyword = getEstablishment(select_establishment);
         // If the place has a geometry, then present it on a map.
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
+        if (place.geometry) {
+            map.panTo(place.geometry.location);
             map.setZoom(17);
         } else {
             map.setCenter(place.geometry.location);
@@ -213,8 +221,7 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         infowindowAutoComplete.open(map, marker);
     });
 
-    google.maps.event.trigger(input, 'blur');
-    google.maps.event.clearInstanceListeners(input);
+
 
     type = [select_establishment]
     getEstablishmentKeyword = getEstablishment(select_establishment);
@@ -226,17 +233,50 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         types: type
     };
 
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
+    infowindow = new google.maps.InfoWindow({
+        content: document.getElementById("info-content")
+    });
+    // var service = new google.maps.places.PlacesService(map);
 
-    service.nearbySearch(request, callback);
+    places.nearbySearch(request, (results, status, pagination) => {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            clearResults();
+            clearMarkers();
+            infowindow = new google.maps.InfoWindow({
+                content: document.getElementById("info-content")
+            });
+            for (var i = 0; i < results.length; i++) {
+                const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+                const markerIcon = MARKER_PATH + markerLetter + ".png";
+                // Use marker animation to drop the icons incrementally on the map.
+                markers[i] = new google.maps.Marker({
+                    position: results[i].geometry.location,
+                    animation: google.maps.Animation.DROP,
+                    icon: markerIcon
+                });
+                // If the user clicks a hotel marker, show the details of that hotel
+                // in an info window.
 
-    google.maps.event.addListener(map, 'click', function(event) {
-        addMarker(event.latLng, map);
+                markers[i].placeResult = results[i];
+                google.maps.event.addListener(markers[i], "click", showInfoWindow);
+                setTimeout(dropMarker(i), i * 100);
+                addResult(results[i], i);
+            }
+        }
     });
 
-    addMarker(geoLocation, map);
+    google.maps.event.trigger(input, 'blur');
+    google.maps.event.clearInstanceListeners(input);
+
+    // // Adds just a lettered marker when you click on the map.Nothing else
+    // google.maps.event.addListener(map, 'click', function(event) {
+    //     addMarker(event.latLng, map);
+    // });
+
+    // addMarker(geoLocation, map);
 }
+
+
 
 function getEstablishment(select_establishment) {
     if (select_establishment == searchTypesBar) {
@@ -261,20 +301,19 @@ function addMarker(location, map) {
     });
 }
 
-function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        clearResults();
-        clearMarkers();
-
-        for (var i = 0; i < results.length; i++) {
-            if (results[i].name.indexOf("Hotel") != -1) {
-                console.log("Marker Includes Hotel in its name: " + JSON.stringify(results[i].name));
-            } else {
-                createMarker(results[i]);
-            }
-        }
-    }
-}
+// function callback(results, status) {
+//     if (status == google.maps.places.PlacesServiceStatus.OK) {
+//         clearResults();
+//         clearMarkers();
+//         for (var i = 0; i < results.length; i++) {
+//             if (results[i].name.indexOf("Hotel") != -1) {
+//                 console.log("Marker Includes Hotel in its name: " + JSON.stringify(results[i].name));
+//             } else {
+//                 createMarker(results[i]);
+//             }
+//         }
+//     }
+// }
 
 
 function createMarker(place) {
@@ -307,10 +346,15 @@ function createMarker(place) {
     }
 
     markers.push(marker);
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
+    buildIWContent(place);
+    // google.maps.event.addListener(marker, "click", showInfoWindow);
+    // google.maps.event.addListener(marker, 'click', function() {
+    //     infowindow.setContent(place.name);
+    //     infowindow.open(map, this);
+    // });
+
+    // setTimeout(dropMarker(i), i * 100);
+    // addResult(results[i], i);
 }
 
 function drop() {
@@ -336,4 +380,103 @@ function clearMarkers() {
         }
     }
     markers = [];
+}
+
+function addResult(result, i) {
+    console.log("in Add result");
+    const results = document.getElementById("results");
+    const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+    const markerIcon = MARKER_PATH + markerLetter + ".png";
+    const tr = document.createElement("tr");
+    tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
+
+    tr.onclick = function() {
+        google.maps.event.trigger(markers[i], "click");
+    };
+    const iconTd = document.createElement("td");
+    const nameTd = document.createElement("td");
+    const icon = document.createElement("img");
+    icon.src = markerIcon;
+    icon.setAttribute("class", "placeIcon");
+    icon.setAttribute("className", "placeIcon");
+    const name = document.createTextNode(result.name);
+    iconTd.appendChild(icon);
+    nameTd.appendChild(name);
+    tr.appendChild(iconTd);
+    tr.appendChild(nameTd);
+    results.appendChild(tr);
+}
+
+
+function showInfoWindow() {
+    console.log("in Show Window");
+    const marker = this;
+    var places = new google.maps.places.PlacesService(map);
+    places.getDetails({ placeId: marker.placeResult.place_id },
+        (place, status) => {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+            }
+            infowindow.open(map, marker);
+            buildIWContent(place);
+        }
+    );
+}
+
+function dropMarker(i) {
+    return function() {
+        markers[i].setMap(map);
+    };
+}
+
+function buildIWContent(place) {
+    console.log("in Build Infor Window Content");
+    document.getElementById("iw-icon").innerHTML =
+        '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
+    document.getElementById("iw-url").innerHTML =
+        '<b><a href="' + place.url + '">' + place.name + "</a></b>";
+    document.getElementById("iw-address").textContent = place.vicinity;
+
+    if (place.formatted_phone_number) {
+        document.getElementById("iw-phone-row").style.display = "";
+        document.getElementById("iw-phone").textContent =
+            place.formatted_phone_number;
+    } else {
+        document.getElementById("iw-phone-row").style.display = "none";
+    }
+
+    // Assign a five-star rating to the hotel, using a black star ('&#10029;')
+    // to indicate the rating the hotel has earned, and a white star ('&#10025;')
+    // for the rating points not achieved.
+    if (place.rating) {
+        let ratingHtml = "";
+
+        for (let i = 0; i < 5; i++) {
+            if (place.rating < i + 0.5) {
+                ratingHtml += "&#10025;";
+            } else {
+                ratingHtml += "&#10029;";
+            }
+            document.getElementById("iw-rating-row").style.display = "";
+            document.getElementById("iw-rating").innerHTML = ratingHtml;
+        }
+    } else {
+        document.getElementById("iw-rating-row").style.display = "none";
+    }
+
+    // The regexp isolates the first part of the URL (domain plus subdomain)
+    // to give a short URL for displaying in the info window.
+    if (place.website) {
+        let website = place.website;
+        // let website = String(hostnameRegexp.exec(place.website));
+
+        // if (!website) {
+        //     website = "http://" + place.website + "/";
+        //     fullUrl = website;
+        // }
+        document.getElementById("iw-website-row").style.display = "";
+        document.getElementById("iw-website").textContent = website;
+    } else {
+        document.getElementById("iw-website-row").style.display = "none";
+    }
 }
