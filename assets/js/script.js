@@ -15,8 +15,8 @@ var input;
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var labelIndex = 0;
 var searchTypesBar = 'bar'
-var searchTypeLibrary = 'library'
-var searchTypePark = 'park'
+var searchTypeCafe = 'cafe'
+var searchTypeRestaurant = 'restaurant'
 
 var countyList = [{
         "county": "Dublin",
@@ -141,7 +141,19 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
+    if (select_establishment == searchTypesBar) {
+        console.log("We are searching for Pubs")
+        keyword = searchTypesBar
+    } else if (select_establishment == searchTypeCafe) {
+        console.log("We are searching for Cafes")
+        keyword = searchTypeCafe
+    } else {
+        console.log("We are searching for restaurnats")
+        keyword = searchTypeRestaurant
+    }
+
     var options = {
+        keyword: keyword,
         bounds: BOUNDS,
         types: ['establishment'],
         strictBounds: true
