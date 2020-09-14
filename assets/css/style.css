@@ -5,8 +5,10 @@ body {
     padding: 0;
 }
 
-div#map {
+#map {
     min-height: 800px;
+    float: left;
+    width: 80%;
 }
 
 #title {
@@ -15,6 +17,14 @@ div#map {
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
+}
+
+legend {
+    padding: 0.2em 0.5em;
+    border: 1px solid green;
+    color: green;
+    font-size: 90%;
+    text-align: center;
 }
 
 #description {
@@ -30,23 +40,6 @@ div#map {
 .bg-color-contact {
     background-color: #ffffff;
 }
-
-
-/* #nav {
-    margin: 0;
-}
-
-#nav li {
-    padding: 0;
-}
-
-.row-table {
-    display: table;
-}
-
-.heading {
-    margin-left: 50px;
-} */
 
 nav ul li a {
     font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
@@ -68,6 +61,13 @@ nav ul li a {
 #navigation a {
     text-decoration: none;
     color: inherit;
+}
+
+.title {
+    font-size: 20px;
+    color: green;
+    padding: 2px;
+    margin: 2px;
 }
 
 #select-county {
@@ -132,14 +132,10 @@ nav ul li a {
     font-family: Roboto;
 }
 
-.active-cyan input.form-control[type=text] {
-    border-bottom: 1px solid #4dd0e1;
-    box-shadow: 0 1px 0 0 #4dd0e1;
-}
-
-.active-cyan .fa,
-.active-cyan-2 .fa {
-    color: #4dd0e1;
+.form-row {
+    margin: 0 100px 0 100px;
+    padding: 100px;
+    background-color: rgb(157, 218, 129);
 }
 
 .social-networks {
@@ -158,19 +154,18 @@ nav ul li a {
 }
 
 #listing {
-    position: absolute;
-    width: 300px;
-    height: 470px;
+    min-height: 800px;
+    float: left;
+    width: 20%;
     overflow: auto;
-    right: 5px;
-    top: 300px;
     cursor: pointer;
     overflow-x: hidden;
+    text-align: center;
 }
 
 #resultsTable {
     border-collapse: collapse;
-    width: 240px;
+    width: 100%;
 }
 
 .contact-heading {

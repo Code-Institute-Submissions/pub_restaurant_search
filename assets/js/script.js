@@ -124,25 +124,29 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
     var select_county_value = document.getElementById("select-county").value;
     var select_establishment = document.getElementById("select-establishment").value;
 
-    for (var i = 0; i < countyList.length; i++) {
-        if (countyList[i].county == select_county_value) {
-            current_radius = countyList[i].radius;
-            BOUNDS = {
-                lat: countyList[i].Current_latitude,
-                lng: countyList[i].Current_longitude
-            };
-            break;
-        }
-    }
-
     if (geoLocation === void 0) {
-        var geoLocation = new google.maps.LatLng(countyList[i].Current_latitude, countyList[i].Current_longitude);
+        BOUNDS = {
+            lat: countyList[0].Current_latitude,
+            lng: countyList[0].Current_longitude
+        };
+        var geoLocation = new google.maps.LatLng(countyList[0].Current_latitude, countyList[0].Current_longitude);
+    } else {
+        for (var i = 0; i < countyList.length; i++) {
+            if (countyList[i].county == select_county_value) {
+                current_radius = countyList[i].radius;
+                BOUNDS = {
+                    lat: countyList[i].Current_latitude,
+                    lng: countyList[i].Current_longitude
+                };
+                break;
+            }
+        }
     }
 
     // Map bit
     map = new google.maps.Map(document.getElementById("map"), {
         center: geoLocation,
-        zoom: 13,
+        zoom: 15,
     });
 
     var marker = new google.maps.Marker({
@@ -172,7 +176,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     // Autocomplete bit
     autocomplete = new google.maps.places.Autocomplete(input, options);
-    // autocomplete.bindTo('bounds', map);
     google.maps.event.addListener(map, 'bounds_changed', function() {
         autocomplete.bindTo('bounds', map);
     });
@@ -196,7 +199,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
         type = [select_establishment]
         getEstablishmentKeyword = getEstablishment(select_establishment);
-        // If the place has a geometry, then present it on a map.
         if (place.geometry) {
             map.panTo(place.geometry.location);
             map.setZoom(17);
@@ -217,13 +219,13 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
-        // infowindowContent.children['place-address'].textContent = address;
-        // infowindowContent.children['place-vicinity'].textContent = place.vicinity;
+        infowindowContent.children['place-address'].textContent = address;
+        infowindowContent.children['place-vicinity'].textContent = place.vicinity;
         infowindowContent.children['place-phone'].textContent = place.formatted_phone_number;
-        // infowindowContent.children['place-website'].textContent = place.website;
-        // infowindowContent.children['place-rating'].textContent = place.rating;
-        // infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
-        // infowindowContent.children['place-price-level'].textContent = place.price_level;
+        infowindowContent.children['place-website'].textContent = place.website;
+        infowindowContent.children['place-rating'].textContent = place.rating;
+        infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
+        infowindowContent.children['place-price-level'].textContent = place.price_level;
         infowindowAutoComplete.open(map, marker);
     });
 
@@ -236,11 +238,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         radius: 10000,
         types: type
     };
-
-    // infowindow = new google.maps.InfoWindow({
-    //     content: document.getElementById("info-content")
-    // });
-    // var service = new google.maps.places.PlacesService(map);
 
     places.nearbySearch(request, (results, status, pagination) => {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -255,14 +252,11 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
             for (var i = 0; i < results.length; i++) {
                 const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
                 const markerIcon = MARKER_PATH + markerLetter + ".png";
-                // Use marker animation to drop the icons incrementally on the map.
                 markers[i] = new google.maps.Marker({
                     position: results[i].geometry.location,
                     animation: google.maps.Animation.DROP,
                     icon: markerIcon
                 });
-                // If the user clicks a hotel marker, show the details of that hotel
-                // in an info window.
 
                 markers[i].placeResult = results[i];
                 google.maps.event.addListener(markers[i], "click", showInfoWindow);
@@ -274,13 +268,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
     google.maps.event.trigger(input, 'blur');
     google.maps.event.clearInstanceListeners(input);
-
-    // // Adds just a lettered marker when you click on the map.Nothing else
-    // google.maps.event.addListener(map, 'click', function(event) {
-    //     addMarker(event.latLng, map);
-    // });
-
-    // addMarker(geoLocation, map);
 }
 
 
@@ -296,28 +283,12 @@ function getEstablishment(select_establishment) {
 }
 
 function addMarker(location, map) {
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
     var marker = new google.maps.Marker({
         position: location,
         label: labels[labelIndex++ % labels.length],
         map: map
     });
 }
-
-// function callback(results, status) {
-//     if (status == google.maps.places.PlacesServiceStatus.OK) {
-//         clearResults();
-//         clearMarkers();
-//         for (var i = 0; i < results.length; i++) {
-//             if (results[i].name.indexOf("Hotel") != -1) {
-//                 console.log("Marker Includes Hotel in its name: " + JSON.stringify(results[i].name));
-//             } else {
-//                 createMarker(results[i]);
-//             }
-//         }
-//     }
-// }
 
 
 function createMarker(place) {
@@ -351,14 +322,6 @@ function createMarker(place) {
 
     markers.push(marker);
     buildIWContent(place);
-    // google.maps.event.addListener(marker, "click", showInfoWindow);
-    // google.maps.event.addListener(marker, 'click', function() {
-    //     infowindow.setContent(place.name);
-    //     infowindow.open(map, this);
-    // });
-
-    // setTimeout(dropMarker(i), i * 100);
-    // addResult(results[i], i);
 }
 
 function drop() {
@@ -444,10 +407,6 @@ function buildIWContent(place) {
     } else {
         document.getElementById("iw-phone-row").style.display = "none";
     }
-
-    // Assign a five-star rating to the hotel, using a black star ('&#10029;')
-    // to indicate the rating the hotel has earned, and a white star ('&#10025;')
-    // for the rating points not achieved.
     if (place.rating) {
         let ratingHtml = "";
 
@@ -463,17 +422,8 @@ function buildIWContent(place) {
     } else {
         document.getElementById("iw-rating-row").style.display = "none";
     }
-
-    // The regexp isolates the first part of the URL (domain plus subdomain)
-    // to give a short URL for displaying in the info window.
     if (place.website) {
         let website = place.website;
-        // let website = String(hostnameRegexp.exec(place.website));
-
-        // if (!website) {
-        //     website = "http://" + place.website + "/";
-        //     fullUrl = website;
-        // }
         document.getElementById("iw-website-row").style.display = "";
         document.getElementById("iw-website").textContent = website;
     } else {

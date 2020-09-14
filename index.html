@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Dublin Transport Tracker</a>
+                        <a class="nav-link" href="#">Pub and Restaurant Search</a>
                     </li>
                 </ul>
             </div>
@@ -47,31 +47,35 @@
             </div>
         </nav>
     </header>
-    <!-- <div id="pac-container">
-        <input id="pac-input" type="text" placeholder="Enter a location">
-    </div> -->
-    <!-- Search form -->
-    <form class="form-inline d-flex justify-content-left md-form form-sm active-cyan active-cyan-2 mt-2">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input id="pac-input" class="form-control form-control-sm ml-3 w-40" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
-        <label><fontsize="5" color="green">County</fontsize></label>
-        <select class="form-control form-control-sm ml-3 w-40" id="select-county" onchange="updateCounty()">
-            <option value="Dublin">Dublin</option>
-            <option value="Donegal">Donegal</option>
-            <option value="Mayo">Mayo</option>
-            <option value="Sligo">Sligo</option>
-            <option value="Galway">Galway</option>
-        </select>
-        <label><fontsize="5" color="green">Establishment</fontsize></label>
-        <select class="form-control form-control-sm ml-3 w-40r" id="select-establishment" onchange="updateEstablishment()">
-            <option value="bar">Bar</option>
-            <option value="cafe">Cafe</option>
-            <option value="restaurant">Restaurant</option>
-        </select>
+    <form>
+        <div class="form-row">
+            <i class="fas fa-search fa-4x" aria-hidden="true"></i>
+            <input class="md-form form-group col-md-4" id="pac-input" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
+            <select class="md-form form-group col-md-4" id="select-county" onchange="updateCounty()">
+                <option selected>Select County</option>
+                <option class="titles" value="Dublin">Dublin</option>
+                <option class="titles" value="Donegal">Donegal</option>
+                <option class="titles" value="Mayo">Mayo</option>
+                <option class="titles" value="Sligo">Sligo</option>
+                <option class="titles" value="Galway">Galway</option>
+            </select>
+            <select class="md-form form-group col-md-3" id="select-establishment" onchange="updateEstablishment()">
+                <option selected>Select Establishment</option>
+                <option class="titles" value="bar">Bar</option>
+                <option class="titles" value="cafe">Cafe</option>
+                <option class="titles" value="restaurant">Restaurant</option>
+            </select>
+        </div>
     </form>
+    <div class="mapANDlisting">
+        <div id="map"></div>
+        <div id="listing">
+            <legend>Subscription info</legend>
+            <table id="resultsTable">
+                <tbody id="results"></tbody>
+            </table>
+        </div>
     </div>
-
-    <div id="map"></div>
     <div style="display: none">
         <div id="infowindow-content">
             <img src="" width="30" height="30" id="place-icon">
@@ -85,11 +89,7 @@
             <span id="place-price-level">Price Level: </span><br>
         </div>
     </div>
-    <div id="listing">
-        <table id="resultsTable">
-            <tbody id="results"></tbody>
-        </table>
-    </div>
+
 
     <div style="display: none">
         <div id="info-content">
@@ -120,18 +120,14 @@
 
     <footer>
         <ul class="social-networks">
-            <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
-            <li><a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube-square"></i></a></li>
-            <li><a href="https://www.reddit.com" target="_blank"><i class="fab fa-reddit-square"></i></a></li>
+            <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square fa-4x"></i></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square fa-4x"></i></a></li>
+            <li><a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube-square fa-4x"></i></a></li>
+            <li><a href="https://www.reddit.com" target="_blank"><i class="fab fa-reddit-square fa-4x"></i></a></li>
         </ul>
     </footer>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initMap"></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initialize&libraries=geometry,visualization,places&v=weekly" async defer></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initMap&libraries=geometry,visualization,places" defer></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Dublin&sensor=true&key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U" async defer></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=restaurant&key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U" defer></script> -->
     <script src="assets/js/script.js"></script>
 </body>
 
