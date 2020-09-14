@@ -6,6 +6,7 @@ const IRELAND_BOUNDS = {
 };
 
 var infowindow;
+var infowindowSwitch = false;
 var markers = [];
 var map;
 var google;
@@ -56,6 +57,7 @@ var countyList = [{
 ];
 
 function updateCounty() {
+    infowindow.close();
     var select_county_value = document.getElementById("select-county").value;
     if (select_county_value != "") {
 
@@ -83,6 +85,8 @@ function updateCounty() {
 }
 
 function updateEstablishment() {
+    console.log("Establishment")
+    infowindow.close();
     var select_establishment = document.getElementById("select-establishment").value;
     if (select_establishment != "") {
         var select_county_value = document.getElementById("select-county").value;
@@ -141,6 +145,13 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         zoom: 13,
     });
 
+    var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+    });
+
+    var places = new google.maps.places.PlacesService(map);
+
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
     getEstablishmentKeyword = getEstablishment(select_establishment);
@@ -155,14 +166,9 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         infowindowAutoComplete = new google.maps.InfoWindow();
         infowindowContent = document.getElementById('infowindow-content');
         infowindowAutoComplete.setContent(infowindowContent);
+    } else {
+        console.log("Establishment info Window")
     }
-
-    var marker = new google.maps.Marker({
-        map: map,
-        anchorPoint: new google.maps.Point(0, -29)
-    });
-
-    var places = new google.maps.places.PlacesService(map);
 
     // Autocomplete bit
     autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -221,8 +227,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         infowindowAutoComplete.open(map, marker);
     });
 
-
-
     type = [select_establishment]
     getEstablishmentKeyword = getEstablishment(select_establishment);
 
@@ -233,18 +237,21 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         types: type
     };
 
-    infowindow = new google.maps.InfoWindow({
-        content: document.getElementById("info-content")
-    });
+    // infowindow = new google.maps.InfoWindow({
+    //     content: document.getElementById("info-content")
+    // });
     // var service = new google.maps.places.PlacesService(map);
 
     places.nearbySearch(request, (results, status, pagination) => {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             clearResults();
             clearMarkers();
-            infowindow = new google.maps.InfoWindow({
-                content: document.getElementById("info-content")
-            });
+            if (infowindowSwitch == false) {
+                infowindow = new google.maps.InfoWindow({
+                    content: document.getElementById("info-content")
+                });
+                infowindowSwitch = true;
+            }
             for (var i = 0; i < results.length; i++) {
                 const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
                 const markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -280,13 +287,10 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
 function getEstablishment(select_establishment) {
     if (select_establishment == searchTypesBar) {
-        console.log("We are searching for Pubs")
         return searchTypesBar
     } else if (select_establishment == searchTypeCafe) {
-        console.log("We are searching for Cafes")
         return searchTypeCafe
     } else {
-        console.log("We are searching for restaurnats")
         return searchTypeRestaurant
     }
 }
@@ -383,7 +387,6 @@ function clearMarkers() {
 }
 
 function addResult(result, i) {
-    console.log("in Add result");
     const results = document.getElementById("results");
     const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
     const markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -407,9 +410,7 @@ function addResult(result, i) {
     results.appendChild(tr);
 }
 
-
 function showInfoWindow() {
-    console.log("in Show Window");
     const marker = this;
     var places = new google.maps.places.PlacesService(map);
     places.getDetails({ placeId: marker.placeResult.place_id },
@@ -430,7 +431,6 @@ function dropMarker(i) {
 }
 
 function buildIWContent(place) {
-    console.log("in Build Infor Window Content");
     document.getElementById("iw-icon").innerHTML =
         '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
     document.getElementById("iw-url").innerHTML =
