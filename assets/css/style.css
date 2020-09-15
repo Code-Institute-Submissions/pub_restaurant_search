@@ -5,42 +5,6 @@ body {
     padding: 0;
 }
 
-#map {
-    min-height: 800px;
-    float: left;
-    width: 80%;
-}
-
-#title {
-    color: #fff;
-    background-color: #4d90fe;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 6px 12px;
-}
-
-legend {
-    padding: 0.2em 0.5em;
-    border: 1px solid green;
-    color: green;
-    font-size: 90%;
-    text-align: center;
-}
-
-#description {
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-
-.bg-color-contact {
-    background-color: #ffffff;
-}
-
 nav ul li a {
     font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
 }
@@ -63,11 +27,81 @@ nav ul li a {
     color: inherit;
 }
 
+.nav-link {
+    font-size: 150%;
+}
+
 .title {
     font-size: 20px;
     color: green;
     padding: 2px;
     margin: 2px;
+}
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.form-row {
+    margin: 0 100px 0 100px;
+    padding: 100px;
+    background-color: rgb(224, 226, 223);
+    border-color: black;
+    border-left: solid;
+    border-right: solid;
+    border-top: solid;
+    border-width: 1px;
+}
+
+#map {
+    min-height: 800px;
+    float: left;
+    width: 90%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+#listing {
+    height: 800px;
+    float: left;
+    width: 10%;
+    overflow: scroll;
+    position: relative;
+    cursor: pointer;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-align: center;
+    border-color: black;
+    border-bottom: solid;
+    border-right: solid;
+    border-top: solid;
+    border-width: 1px;
+}
+
+#listing-info #resultsTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+legend {
+    padding: 0.2em 0.5em;
+    color: green;
+    font-size: 90%;
+    text-align: center;
+    border-color: black;
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.bg-color-contact {
+    background-color: #ffffff;
 }
 
 #select-county {
@@ -81,12 +115,7 @@ nav ul li a {
     width: 15%;
     padding: 3px 23px 3px 30px;
     outline: 5;
-    background-color: #f5f5f5;
-}
-
-#infowindow-content {
-    font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
-    font-size: 30px;
+    /* background-color: #f5f5f5; */
 }
 
 #select-establishment {
@@ -121,21 +150,9 @@ nav ul li a {
     border-color: #4d90fe;
 }
 
-.pac-card {
-    margin: 10px 10px 0 0;
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    background-color: #fff;
-    font-family: Roboto;
-}
-
-.form-row {
-    margin: 0 100px 0 100px;
-    padding: 100px;
-    background-color: rgb(157, 218, 129);
+#infowindow-content {
+    font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
 }
 
 .social-networks {
@@ -151,21 +168,6 @@ nav ul li a {
     margin: 1%;
     padding: 5%;
     color: #777777;
-}
-
-#listing {
-    min-height: 800px;
-    float: left;
-    width: 20%;
-    overflow: auto;
-    cursor: pointer;
-    overflow-x: hidden;
-    text-align: center;
-}
-
-#resultsTable {
-    border-collapse: collapse;
-    width: 100%;
 }
 
 .contact-heading {
@@ -194,5 +196,280 @@ button[type="submit"] {
         min-height: 240px;
         margin: 0 auto;
         max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 943px) {
+    .form-row {
+        width: 100%;
+        margin: 0px;
+        margin-top: 25px;
+        padding: 0px;
+        background-color: rgb(224, 226, 223);
+        border-color: black;
+        border-left: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #pac-input {
+        width: 80%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-left: 35px;
+        margin-top: 10px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-county {
+        width: 28%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-left: 100px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-establishment {
+        width: 28%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-left: 130px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    .fas {
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .form-row {
+        width: 100%;
+        margin: 0px;
+        margin-top: 25px;
+        padding: 0px;
+        background-color: rgb(224, 226, 223);
+        border-color: black;
+        border-left: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #pac-input {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-left: 0px;
+        margin-top: 30px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-county {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        margin-left: 60px;
+        margin-top: 20px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-establishment {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        margin-left: 120px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    .fas {
+        visibility: hidden;
+    }
+    #description {
+        visibility: hidden;
+    }
+    #map {
+        min-height: 700px;
+        float: left;
+        width: 70%;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+    }
+    #listing {
+        height: 700px;
+        float: left;
+        width: 30%;
+        overflow: scroll;
+        position: relative;
+        cursor: pointer;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        text-align: center;
+        border-color: black;
+        border-bottom: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #listing-info #resultsTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #resultsTable {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .navbar-toggler {
+        float: right;
+    }
+    .nav-link {
+        font-size: 150%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .form-row {
+        width: 100%;
+        margin-left: 0px;
+        margin-top: -30px;
+        padding: 0px;
+        background-color: rgb(224, 226, 223);
+        border-color: black;
+        border-left: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #pac-input {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        margin-top: -50px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-county {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-establishment {
+        width: 100%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    .fas {
+        visibility: hidden;
+    }
+    #description {
+        visibility: hidden;
+    }
+    #map {
+        min-height: 400px;
+        float: left;
+        width: 100%;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+    }
+    #listing {
+        height: 400px;
+        float: left;
+        width: 100%;
+        overflow: auto;
+        cursor: pointer;
+        overflow-x: hidden;
+        text-align: center;
+        border-color: black;
+        border-bottom: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #listing-info #resultsTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #resultsTable {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .navbar-toggler {
+        float: right;
+    }
+    .nav-link {
+        font-size: 130%;
     }
 }

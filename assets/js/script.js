@@ -218,14 +218,14 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
         }
 
         infowindowContent.children['place-icon'].src = place.icon;
-        infowindowContent.children['place-name'].textContent = place.name;
-        infowindowContent.children['place-address'].textContent = address;
-        infowindowContent.children['place-vicinity'].textContent = place.vicinity;
-        infowindowContent.children['place-phone'].textContent = place.formatted_phone_number;
-        infowindowContent.children['place-website'].textContent = place.website;
-        infowindowContent.children['place-rating'].textContent = place.rating;
-        infowindowContent.children['place-user-rating-total'].textContent = place.user_ratings_total;
-        infowindowContent.children['place-price-level'].textContent = place.price_level;
+        infowindowContent.children['place-name'].textContent = "Name: " + place.name;
+        infowindowContent.children['place-address'].textContent = "Address: " + address;
+        infowindowContent.children['place-vicinity'].textContent = "Vicinity: " + place.vicinity;
+        infowindowContent.children['place-phone'].textContent = "Phone: " + place.formatted_phone_number;
+        infowindowContent.children['place-website'].textContent = "Website: " + place.website;
+        infowindowContent.children['place-rating'].textContent = "Rating: " + place.rating;
+        infowindowContent.children['place-user-rating-total'].textContent = "Rating Total: " + place.user_ratings_total;
+        infowindowContent.children['place-price-level'].textContent = "Price Level: " + place.price_level;
         infowindowAutoComplete.open(map, marker);
     });
 

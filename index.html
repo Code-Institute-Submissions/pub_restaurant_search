@@ -18,24 +18,24 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+            <div class="navbar-collapse collapse order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Pub and Restaurant Search</a>
+                        <a class="navbar-brand nav-link" href="index.html">Pub and Restaurant Search</a>
                     </li>
                 </ul>
             </div>
-            <div class="mx-auto order-0">
+            <div class="ml-auto order-0">
                 <a class="navbar-brand mx-auto" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
               <span class="navbar-toggler-icon"></span>
           </button>
             </div>
-            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 flex-grow-1">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link active" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -47,11 +47,16 @@
             </div>
         </nav>
     </header>
+    <div id="description">
+        <p>
+            This site is for pubs and restaurants. If you need to find a bar, cafe, or a restaurant in Ireland, this is the place. You can select the county and also establishment.
+        </p>
+    </div>
     <form>
         <div class="form-row">
             <i class="fas fa-search fa-4x" aria-hidden="true"></i>
-            <input class="md-form form-group col-md-4" id="pac-input" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
-            <select class="md-form form-group col-md-4" id="select-county" onchange="updateCounty()">
+            <input class="form col-lg-4 col-md-10 col-sm-11 col-xs-12" id="pac-input" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
+            <select class="form col-lg-4 col-md-4 col-sm-11 col-xs-12" id="select-county" onchange="updateCounty()">
                 <option selected>Select County</option>
                 <option class="titles" value="Dublin">Dublin</option>
                 <option class="titles" value="Donegal">Donegal</option>
@@ -59,7 +64,7 @@
                 <option class="titles" value="Sligo">Sligo</option>
                 <option class="titles" value="Galway">Galway</option>
             </select>
-            <select class="md-form form-group col-md-3" id="select-establishment" onchange="updateEstablishment()">
+            <select class="form col-lg-3 col-md-4 col-sm-11 col-xs-12" id="select-establishment" onchange="updateEstablishment()">
                 <option selected>Select Establishment</option>
                 <option class="titles" value="bar">Bar</option>
                 <option class="titles" value="cafe">Cafe</option>
@@ -70,7 +75,7 @@
     <div class="mapANDlisting">
         <div id="map"></div>
         <div id="listing">
-            <legend>Subscription info</legend>
+            <legend>Listing info</legend>
             <table id="resultsTable">
                 <tbody id="results"></tbody>
             </table>
@@ -78,15 +83,15 @@
     </div>
     <div style="display: none">
         <div id="infowindow-content">
-            <img src="" width="30" height="30" id="place-icon">
-            <span id="place-name" class="title">Name:  </span><br>
-            <span id="place-address">Address: </span><br>
-            <span id="place-vicinity">Address: </span><br>
-            <span id="place-phone">Phone: </span><br>
-            <span id="place-website" target="_blank">Website: </span><br>
-            <span id="place-rating">Rating: </span><br>
-            <span id="place-user-rating-total">Total Ratings: </span><br>
-            <span id="place-price-level">Price Level: </span><br>
+            <img src="" width="30" height="30" id="place-icon"><br>
+            <span id="place-name" class="title"></span><br>
+            <span id="place-address" class="title"></span><br>
+            <span id="place-vicinity" class="title"></span><br>
+            <span id="place-phone" class="title"></span><br>
+            <span id="place-website" class="title" target="_blank"></span><br>
+            <span id="place-rating" class="title"></span><br>
+            <span id="place-user-rating-total" class="title"></span><br>
+            <span id="place-price-level" class="title"></span><br>
         </div>
     </div>
 
