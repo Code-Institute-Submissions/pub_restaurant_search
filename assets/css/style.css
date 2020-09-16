@@ -199,7 +199,108 @@ button[type="submit"] {
     }
 }
 
+@media screen and (max-width: 1393px) {
+    .form-row {
+        width: 100%;
+        margin: 0px;
+        margin-top: 25px;
+        padding: 0px;
+        background-color: rgb(224, 226, 223);
+        border-color: black;
+        border-left: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #pac-input {
+        width: 30%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-left: -20px;
+        margin-top: 30px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-county {
+        width: 30%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    #select-establishment {
+        width: 30%;
+        font-weight: 300;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        height: 50px;
+        text-overflow: ellipsis;
+        border: 3px solid green;
+        border-radius: 8px;
+        padding: 3px 23px 3px 30px;
+        outline: 5;
+        background-color: #f5f5f5;
+    }
+    .fas {
+        visibility: hidden;
+    }
+    #map {
+        min-height: 700px;
+        float: left;
+        width: 75%;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+    }
+    #listing {
+        height: 700px;
+        float: left;
+        width: 25%;
+        overflow: scroll;
+        position: relative;
+        cursor: pointer;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        text-align: center;
+        border-color: black;
+        border-bottom: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #listing-info #resultsTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #resultsTable {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 @media screen and (max-width: 943px) {
+    form {
+        width: 100%;
+        margin-top: 22px;
+    }
     .form-row {
         width: 100%;
         margin: 0px;
@@ -218,7 +319,7 @@ button[type="submit"] {
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        margin-left: 35px;
+        margin-left: 0px;
         margin-top: 10px;
         height: 50px;
         text-overflow: ellipsis;
@@ -229,12 +330,13 @@ button[type="submit"] {
         background-color: #f5f5f5;
     }
     #select-county {
-        width: 28%;
+        width: 30%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        margin-left: 100px;
+        margin-left: 65px;
+        margin-top: 0px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
@@ -244,12 +346,13 @@ button[type="submit"] {
         background-color: #f5f5f5;
     }
     #select-establishment {
-        width: 28%;
+        width: 30%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        margin-left: 130px;
+        margin-left: 5px;
+        margin-top: 0px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
@@ -261,13 +364,49 @@ button[type="submit"] {
     .fas {
         visibility: hidden;
     }
+    #map {
+        min-height: 700px;
+        float: left;
+        width: 75%;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+    }
+    #listing {
+        height: 700px;
+        float: left;
+        width: 25%;
+        overflow: scroll;
+        position: relative;
+        cursor: pointer;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        text-align: center;
+        border-color: black;
+        border-bottom: solid;
+        border-right: solid;
+        border-top: solid;
+        border-width: 1px;
+    }
+    #listing-info #resultsTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #resultsTable {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 767px) {
+    form {
+        width: 100%;
+        margin-top: 22px;
+    }
     .form-row {
         width: 100%;
         margin: 0px;
-        margin-top: 25px;
         padding: 0px;
         background-color: rgb(224, 226, 223);
         border-color: black;
@@ -277,13 +416,13 @@ button[type="submit"] {
         border-width: 1px;
     }
     #pac-input {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        margin-left: 0px;
-        margin-top: 30px;
+        margin-left: 30px;
+        /* margin-top: -20px; */
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
@@ -293,13 +432,13 @@ button[type="submit"] {
         background-color: #f5f5f5;
     }
     #select-county {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
-        margin-bottom: 20px;
-        margin-left: 60px;
-        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: 30px;
+        margin-top: 30px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
@@ -309,12 +448,13 @@ button[type="submit"] {
         background-color: #f5f5f5;
     }
     #select-establishment {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 20px;
         margin-top: 20px;
-        margin-left: 120px;
+        margin-left: 30px;
+        margin-bottom: 40px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
@@ -371,10 +511,15 @@ button[type="submit"] {
 }
 
 @media screen and (max-width: 576px) {
+    form {
+        width: 100%;
+        margin-left: 5px;
+        margin-top: 40px;
+    }
     .form-row {
         width: 100%;
-        margin-left: 0px;
-        margin-top: -30px;
+        margin-left: 20px;
+        margin-top: -50px;
         padding: 0px;
         background-color: rgb(224, 226, 223);
         border-color: black;
@@ -384,12 +529,13 @@ button[type="submit"] {
         border-width: 1px;
     }
     #pac-input {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
         margin-right: 5px;
+        margin-left: 20px;
         margin-top: -50px;
         height: 50px;
         text-overflow: ellipsis;
@@ -400,27 +546,30 @@ button[type="submit"] {
         background-color: #f5f5f5;
     }
     #select-county {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
         margin-right: 5px;
+        margin-left: 20px;
+        margin-top: 0px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
         border-radius: 8px;
         padding: 3px 23px 3px 30px;
-        outline: 5;
         background-color: #f5f5f5;
     }
     #select-establishment {
-        width: 100%;
+        width: 90%;
         font-weight: 300;
         font-size: 20px;
         padding-bottom: 10px;
         margin-bottom: 10px;
         margin-right: 5px;
+        margin-left: 20px;
+        margin-top: 0px;
         height: 50px;
         text-overflow: ellipsis;
         border: 3px solid green;
