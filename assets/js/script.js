@@ -22,16 +22,42 @@ const MARKER_PATH =
     "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 
 var countyList = [{
-        "county": "Dublin",
-        "Current_latitude": 53.3498,
-        "Current_longitude": -6.2603,
+        "county": "Antrim",
+        "Current_latitude": 54.7195,
+        "Current_longitude": -6.2072,
         "radius": 2000
     },
 
     {
-        "county": "Mayo",
-        "Current_latitude": 54.0153,
-        "Current_longitude": -9.4289,
+        "county": "Armagh",
+        "Current_latitude": 54.3503,
+        "Current_longitude": -6.6528,
+        "radius": 2000
+    },
+
+    {
+        "county": "Carlow",
+        "Current_latitude": 52.8365,
+        "Current_longitude": -6.9341,
+        "radius": 2000
+    },
+    {
+        "county": "Cavan",
+        "Current_latitude": 53.9897,
+        "Current_longitude": -7.3633,
+        "radius": 2000
+    },
+
+    {
+        "county": "Clare",
+        "Current_latitude": 52.9045,
+        "Current_longitude": -8.9811,
+        "radius": 2000
+    },
+    {
+        "county": "Cork",
+        "Current_latitude": 51.8985,
+        "Current_longitude": -8.4756,
         "radius": 2000
     },
 
@@ -42,9 +68,35 @@ var countyList = [{
         "radius": 2000
     },
     {
-        "county": "Sligo",
-        "Current_latitude": 54.2766,
-        "Current_longitude": -8.4761,
+        "county": "Derry",
+        "Current_latitude": 54.9966,
+        "Current_longitude": -7.3086,
+        "radius": 2000
+    },
+
+    {
+        "county": "Down",
+        "Current_latitude": 54.3277,
+        "Current_longitude": -5.7158,
+        "radius": 2000
+    },
+    {
+        "county": "Dublin",
+        "Current_latitude": 53.3498,
+        "Current_longitude": -6.2603,
+        "radius": 2000
+    },
+
+    {
+        "county": "Fermanagh",
+        "Current_latitude": 54.3438,
+        "Current_longitude": -7.6319,
+        "radius": 2000
+    },
+    {
+        "county": "Kerry",
+        "Current_latitude": 52.1545,
+        "Current_longitude": -9.5669,
         "radius": 2000
     },
 
@@ -52,6 +104,131 @@ var countyList = [{
         "county": "Galway",
         "Current_latitude": 53.2707,
         "Current_longitude": -9.0568,
+        "radius": 2000
+    },
+    {
+        "county": "Kildare",
+        "Current_latitude": 53.1589,
+        "Current_longitude": -6.9096,
+        "radius": 2000
+    },
+
+    {
+        "county": "Kilkenny",
+        "Current_latitude": 52.6541,
+        "Current_longitude": -7.2448,
+        "radius": 2000
+    },
+    {
+        "county": "Laois",
+        "Current_latitude": 52.9943,
+        "Current_longitude": -7.3323,
+        "radius": 2000
+    },
+
+    {
+        "county": "Leitrim",
+        "Current_latitude": 54.1247,
+        "Current_longitude": -8.0020,
+        "radius": 2000
+    },
+    {
+        "county": "Limerick",
+        "Current_latitude": 52.5091,
+        "Current_longitude": -8.7475,
+        "radius": 2000
+    },
+
+    {
+        "county": "Longford",
+        "Current_latitude": 53.7275,
+        "Current_longitude": -7.7932,
+        "radius": 2000
+    },
+    {
+        "county": "Louth",
+        "Current_latitude": 53.9252,
+        "Current_longitude": -6.4889,
+        "radius": 2000
+    },
+
+    {
+        "county": "Meath",
+        "Current_latitude": 53.6055,
+        "Current_longitude": -6.6564,
+        "radius": 2000
+    },
+    {
+        "county": "Monaghan",
+        "Current_latitude": 54.2492,
+        "Current_longitude": -6.9683,
+        "radius": 2000
+    },
+
+    {
+        "county": "Offaly",
+        "Current_latitude": 53.2357,
+        "Current_longitude": -7.7122,
+        "radius": 2000
+    },
+    {
+        "county": "Roscommon",
+        "Current_latitude": 53.7593,
+        "Current_longitude": -8.2682,
+        "radius": 2000
+    },
+
+    {
+        "county": "Sligo",
+        "Current_latitude": 54.2766,
+        "Current_longitude": -8.4761,
+        "radius": 2000
+    },
+
+    {
+        "county": "Tipperary",
+        "Current_latitude": 52.4738,
+        "Current_longitude": -8.1619,
+        "radius": 2000
+    },
+    {
+        "county": "Tyrone",
+        "Current_latitude": 54.6890,
+        "Current_longitude": -7.0790,
+        "radius": 2000
+    },
+
+    {
+        "county": "Waterford",
+        "Current_latitude": 52.1944,
+        "Current_longitude": -7.6228,
+        "radius": 2000
+    },
+    
+
+    {
+        "county": "Westmeath",
+        "Current_latitude": 53.5345,
+        "Current_longitude": -7.4653,
+        "radius": 2000
+    },
+    {
+        "county": "Wexford",
+        "Current_latitude": 52.4794,
+        "Current_longitude": -6.5840,
+        "radius": 2000
+    },
+
+    {
+        "county": "Donegal",
+        "Current_latitude": 54.6538,
+        "Current_longitude": -8.1096,
+        "radius": 2000
+    },
+    {
+        "county": "Wicklow",
+        "Current_latitude": 52.9862,
+        "Current_longitude": -6.3673,
         "radius": 2000
     }
 ];
