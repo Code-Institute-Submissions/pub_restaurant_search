@@ -234,6 +234,10 @@ button[type="submit"] {
 *, *:before, *:after {
     box-sizing: inherit;
   }
+
+  .row {
+    width: 100%;
+  }
   
   .column {
     float: left;
@@ -249,9 +253,18 @@ button[type="submit"] {
   
   .about-section {
     padding: 50px;
+    margin-top: 50px;
     text-align: center;
     background-color: #474e5d;
     color: white;
+  }
+  
+  .about-section h1 {
+    margin-top: 10px;
+  }
+
+  .team {
+    margin-top: 10px;
   }
   
   .container {
@@ -268,27 +281,12 @@ button[type="submit"] {
     color: grey;
   }
   
-  .button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .button:hover {
-    background-color: #555;
-  }
-
   /* NEWSLETTER SECTION */
 
 .newsletter {
     padding: 80px 0;
-    background-color: #03fcd3;
+    background-color: lightskyblue;
+    margin-top: 800px;
 }
 
 .newsletter .content {
@@ -316,6 +314,49 @@ button[type="submit"] {
 }
 
 .newsletter .content .btn {
+    min-height: 50px;
+    border-radius: 0;
+    background: #243c4f;
+    color: #fff;
+    font-weight: 400;
+}
+
+.newsletter-contact {
+  padding: 80px 0;
+  background-color: lightskyblue;
+  font-family: "Exo", sans-serif;
+  font-weight: 300;
+  margin-top: 100px;
+  text-overflow: ellipsis;
+  border: 3px solid green;
+  border-radius: 8px;
+}
+
+.newsletter-contact .content {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-contact .content h2 {
+    color: #243c4f;
+    margin-bottom: 40px;
+}
+
+.newsletter-contact .content .form-control {
+    height: 50px;
+    border-color: #ffffff;
+    border-radius: 0;
+}
+
+.newsletter-contact .content.form-control:focus {
+    box-shadow: none;
+    border: 2px solid #243c4f;
+}
+
+.newsletter-contact .content .btn {
     min-height: 50px;
     border-radius: 0;
     background: #243c4f;
@@ -424,6 +465,10 @@ button[type="submit"] {
 
   .form-control {
     margin-top: 20px;
+  }
+
+  .newsletter {
+    margin-top: 700px;
   }
 }
 
@@ -542,6 +587,10 @@ button[type="submit"] {
   .center-form {
     max-width: 100%;
     margin-left: 0px;
+  }
+
+  .newsletter {
+    margin-top: 700px;
   }
 }
 
@@ -684,6 +733,19 @@ button[type="submit"] {
     font-weight: 400;
 }
 
+.newsletter {
+  margin-top: 700px;
+}
+
+.newsletter-contact {
+  margin-top: 20px;
+}
+
+}
+
+.card {
+  margin-left: 20px;
+  position: static;
 }
 
 @media screen and (max-width: 576px) {
@@ -816,5 +878,33 @@ button[type="submit"] {
 
   button[type="submit"] {
     margin-left: 30px;
+  }
+
+  .newsletter {
+    margin-top: 800px;
+  }
+
+  .newsletter-contact {
+    margin-top: 20px;
+  }
+
+  .newsletter-contact .content .btn {
+    margin-right: 30px;
+  }
+
+  .row {
+    margin-left: 10px;
+  }
+
+  .column {
+    
+    width: 100%;
+    padding: 0px;
+    float: none;
+  }
+
+  .card {
+    margin-left: 30px;
+    position: static;
   }
 }
