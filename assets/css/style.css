@@ -6,7 +6,7 @@ body {
 }
 
 nav ul li a {
-  font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
+  font-family: "DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif";
 }
 
 #navigation {
@@ -151,7 +151,7 @@ legend {
 }
 
 #infowindow-content {
-  font-family: DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif;
+  font-family: "DM Mono, Source Sans Pro, Geneva, Tahoma, sans-serif";
   font-size: 30px;
 }
 
