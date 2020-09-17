@@ -1,14 +1,16 @@
-# <p align="center">Testing for [Delicious Food](https://vladimir-cmd.github.io/)<p>
+# <p align="center">Testing for [Delicious Food](https://vladimir-cmd.github.io/pub_restaurant_search.github.io)<p>
 
 Used [W3C HTML validator](https://validator.w3.org/#validate_by_input) website via the direct input path. 
 
-1. Index.html validator results.
+1. contact.html validator results.
 
-<p align="center"><img width="350" height="300" src="test-results/index_html.png"></p>
+<p align="center"><img width="350" height="300" src="html_validation.png"></p>
 
-2. gallery.html validator results.
+Used [Jigsaw validator](https://jigsaw.w3.org/css-validator) website via the direct input path. 
 
-<p align="center"><img width="350" height="300" src="test-results/gallery_html_validation.png"></p>
+2. style.css validator results.
+
+<p align="center"><img width="350" height="300" src="test-results/css_validation.png"></p>
 
 ## User stories:
 
@@ -22,19 +24,21 @@ Used [W3C HTML validator](https://validator.w3.org/#validate_by_input) website v
 
   - Visitors who are browsing with Chrome, Safari, Firefox and IE can use the website on desktop, tablet and mobile views with full responsiveness.
 
-- As a visitor, I want to find out about tasty food, delicious cuisines and awesome recipes. Also, a visitor might want to find out more about healthy eating.
+- As a visitor, I want to find out about cafes, pubs, or restaurants.
 
-  - Go to the home page and scroll down to the section 'Delicious Food - Everyday - All day’ 
+  - Go to the home page and enter your query into the search field.
   
-  - There are two sections each introducing a different reasons why eating healthy is good.
+  - Select from "Select county" dropdown list in case you want to filter search
 
-- As a visitor, one might want to find out about worlds various cuisines.
+  - Select from "Select Establishment" dropdown list in case you want to filter search even further
 
-  - Go to the home page and scroll down to the ‘Cuisines’ section where there are three columns introducing some of the world's best cuisines.
-  
-  - There is a 'Read More...' button when if clicked on it, visitor will be taken to a page dedicated to that cuisine.
+- As a visitor, one might want to send suggestions, advices, or report an issue
 
-- As a visitor, I would like to subscribe to Delicious Food latest news.
+  - Go to the Contact page, and send a query.
+
+  - An email will be sent to the team.
+
+- As a visitor, I would like to subscribe to latest updates.
 
   - Go to the bottom of the home page by scrolling down and there is a green form labelled ‘Subscribe to our newsletter’.
 
@@ -44,80 +48,100 @@ Used [W3C HTML validator](https://validator.w3.org/#validate_by_input) website v
 
 # Responsiveness of website
 
-## [Home.html](https://vladimir-cmd.github.io/index.html) in Desktop view.
+## [Home.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html) in Desktop view.
+In desktop mode, the navigation menu bar on the top is fixed and the words are clearly displayed. 
+
+Next we have a search and select section, where we have a search field, and two dropdown lists, all in one row.
+
+The Google Maps section is placed centrally on the page, with 10% of space reserved for search and select results table.
+
+Next is the Subscribe to our newsletter section.
+
+At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+
+## [Home.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html) in iPad/iPad Pro view.
+
+In iPad/iPad Pro mode, the navigation menu bar on the top is fixed and the words are clearly displayed. 
+
+Next we have a search and select section, where we have a search field, and two dropdown lists.
+
+For iPad, search field occupies one row, while dropdown selections occupy the second.
+
+For iPad Pro, the search and select section is the same as for the Desktop mode.
+
+The Google Maps section is placed centrally on the page, with 20% of space reserved for search and select results table.
+
+Next is the Subscribe to our newsletter section.
+
+At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+
+## [Home.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html) in iPhone X, 5, 6, 7, 8 view.
+
+In mobile mode, the navigation menu bar on the top is fixed and the word are hidden under a button. When you click on a button, it will show the expanded dropdown list,In iPad/iPad Pro mode, the navigation menu bar on the top is fixed and the words are clearly displayed. 
+
+Next we have a search and select section, where we have a search field, and two dropdown lists, each of those in a separate row.
+
+The Google Maps section is placed centrally on the page.
+
+The search and select results table is located under Google Maps section.
+
+Next is the Subscribe to our newsletter section.
+
+At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+
+## [contact.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/contact.html) in Desktop view.
+
 In desktop mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
 
-The site description section contains left panel with reasons why to eat healthy. Center panel contains a nice image of cookies, and the right panel also contains some reasons why to eat healthy.
+The form is centred on the page. All the text and text box areas are equally spaced and within the border of the form.
 
-The Cuisines section contains three columns with two horizontal rows, where we have a short sumary of world's best cuisines. There is a 'Read More...' button, which when clicked on, it will take you to a page dedicated to that cuisine.
+When user selects a text area, field is changed to a thin light blue color.
 
-Further down there is a table with the list of top 5 recipes of the month.
+If the ‘Name’ field is not filled and user clicks 'Send Project Request' then the message ‘Please fill in this field’ appears.
 
-Next is the Subscribe to our newsletter section.
+If the ‘Email’ field is not filled and user clicks 'Send' then the message ‘Please fill in this field’ appears.
 
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+If the ‘Email’ field is not valid and you click the ‘Send Project Request’ button then the message ‘Please include a ‘@‘ in the email address ‘___’ is missing a ‘@‘ appears.
 
-## [Home.html](https://vladimir-cmd.github.io/index.html) in iPad/iPad Pro view.
+If the ‘Email’ field has been partly filled in with half the email address and you click the ‘Send’ Button then another message comes up ’Please enter a part following ‘@‘, ‘___@‘ is incomplete’.
 
-In iPad/iPad Pro mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
+The horizontal divider and social links are centred at the bottom of the page. The social media links are equally spaced and in a row. All links open into a new tab to the external website.
 
-The site description section contains just one vertical section where we have reasons why to eat healthy, following with the nice image of cookies.
+## [contact.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/contact.html) in iPad/iPad Pro view.
 
-The Cuisines section contains three columns with two horizontal rows, where we have a short sumary of world's best cuisines. There is a 'Read More...' button, which when clicked on, it will take you to a page dedicated to that cuisine.
+The form is centred on the page. All the text and text box areas are equally spaced and within the border of the form.
 
-Further down there is a table with the list of top 5 recipes of the month.
+When user selects a text area, field is changed to a thin light blue color.
 
-Next is the Subscribe to our newsletter section.
+If the ‘Name’ field is not filled and user clicks 'Send Project Request' then the message ‘Please fill in this field’ appears.
 
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+If the ‘Email’ field is not filled and user clicks 'Send' then the message ‘Please fill in this field’ appears.
 
-## [Home.html](https://vladimir-cmd.github.io/index.html) in iPhone X, 5, 6, 7, 8 view.
+If the ‘Email’ field is not valid and you click the ‘Send Project Request’ button then the message ‘Please include a ‘@‘ in the email address ‘___’ is missing a ‘@‘ appears.
+
+If the ‘Email’ field has been partly filled in with half the email address and you click the ‘Send’ Button then another message comes up ’Please enter a part following ‘@‘, ‘___@‘ is incomplete’.
+
+The horizontal divider and social links are centred at the bottom of the page. The social media links are equally spaced and in a row. All links open into a new tab to the external website.
+
+## [contact.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/contact.html) in iPhone X, 5, 6, 7, 8 view.
 
 In mobile mode, the navigation menu bar on the top is fixed and the word are hidden under a button. When you click on a button, it will show the expanded dropdown list, from where you will be able to select the page you like.
 
-The screen shows the hero image displaying the full width of the browser.
+The form is centred on the page. All the text and text box areas are equally spaced and within the border of the form.
 
-The site description section contains just one vertical section where we have reasons why to eat healthy. Image of the cookies is hidden for smaller screens.
+When user selects a text area, field is changed to a thin light blue color.
 
-The Cuisines section contain only one column, where we have a short sumary of world's best cuisines. There is a 'Read More...' button, which when clicked on, it will take you to a page dedicated to that cuisine.
+If the ‘Name’ field is not filled and user clicks 'Send Project Request' then the message ‘Please fill in this field’ appears.
 
-Table is hidden in mobile view.
+If the ‘Email’ field is not filled and user clicks 'Send' then the message ‘Please fill in this field’ appears.
 
-Next is the Subscribe to our newsletter section.
+If the ‘Email’ field is not valid and you click the ‘Send Project Request’ button then the message ‘Please include a ‘@‘ in the email address ‘___’ is missing a ‘@‘ appears.
 
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
+If the ‘Email’ field has been partly filled in with half the email address and you click the ‘Send’ Button then another message comes up ’Please enter a part following ‘@‘, ‘___@‘ is incomplete’.
 
-## [gallery.html](https://vladimir-cmd.github.io/gallery.html) in Desktop view.
+The horizontal divider and social links are centred at the bottom of the page. The social media links are equally spaced and in a row. All links open into a new tab to the external website.
 
-In desktop mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
-
-The Gallery section contains three columns where images are listed. Each image contains a title and a little description.
-
-Next is the Subscribe to our newsletter section.
-
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
-
-## [gallery.html](https://vladimir-cmd.github.io/gallery.html) in iPad/iPad Pro view.
-
-In iPad/Ipad Pro mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
-
-The Gallery section contains two columns where images are listed. Each image contains a title and a little description.
-
-Next is the Subscribe to our newsletter section.
-
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
-
-## [gallery.html](https://vladimir-cmd.github.io/gallery.html) in iPhone X, 5, 6, 7, 8 view.
-
-In mobile mode, the navigation menu bar on the top is fixed and the word are hidden under a button. When you click on a button, it will show the expanded dropdown list, from where you will be able to select the page you like.
-
-The Gallery section contains just one column where images are listed. Each image contains a title and a little description.
-
-Next is the Subscribe to our newsletter section.
-
-At the end of the page we have a social network section, where we have icons with links to most popular social networking sites: Facebook, Twitter, Youtube, and Reddit.
-
-## [contact_me.html](https://vladimir-cmd.github.io/contact_me.html) in desktop view.
+## [about.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html) in desktop view.
 
 In desktop mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
 
@@ -137,7 +161,7 @@ When you click the ‘Send’ button it goes into a purple color.
 
 The horizontal divider and social links are centred at the bottom of the page. The social media links are equally spaced and in a row. All links open into a new tab to the external website.
 
-## [contact_me.html](https://vladimir-cmd.github.io/contact_me.html) in iPad/iPad Pro view.
+## [about.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html) in iPad/iPad Pro view.
 
 In iPad/iPad Pro, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
 
@@ -157,7 +181,7 @@ When you click the ‘Send’ button it goes into a purple color.
 
 The horizontal divider and social links are centred at the bottom of the page. The social media links are equally spaced and in a row. All links open into a new tab to the external website.
 
-## [contact_me.html](https://vladimir-cmd.github.io/contact_me.html) in iPhone X, 5, 6, 7, 8 view.
+## [about.html](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html) in iPhone X, 5, 6, 7, 8 view.
 
 In mobile mode, the navigation menu bar on the top is fixed and the words are clearly displayed. The screen shows the hero image displaying the full width of the browser.
 
@@ -192,7 +216,3 @@ Navbar code was copied from [Bootstrap 4](https://getbootstrap.com/), I found th
 I couldn't find a way how to make navigation bar both fixed (goes with scrolling, doesn't disappear), and static at the same time, so when you click on a button in mobile mode, the navbar dropdown pushes the hero image, and not goes over the image.
 
 Used codes from [CSS Tricks](https://css-tricks.com/books/fundamental-css-tactics/scale-typography-screen-size/) to help with font-size responsiveness.
-
-## Bugs to be fixed:
-
-WHen I click on a last photo in gallery, it pushes the Subscribe to our newsletter section further down, thus creating white space.

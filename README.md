@@ -5,7 +5,7 @@ Site goal is to make it easier for others when it comes to searching for some in
 Visitor should be able to browse the site, search for establishments without registering.
 
 # <p align="center">[Cafe Pub Restaurant Search Web Site Link](https://github.com/vladimir-cmd/pub_restaurant_search.github.io "Cafe Pub Restaurant Search Homepage")</p>
- 
+
 ## User Experience
 
 ### Plan
@@ -18,106 +18,108 @@ It is simple and clean website, easy to navigate between pages. On home page the
 
 Reason why creating this website:
 
-* be a place where visitor will come to look for cafes, pubs, or restaurant by selecting a specific establishment
-* be a place where visitor will be able to select a specific county in Ireland
-* be a place where visitor can look and select a specific cafe, pub, or a restaurant from the table
-* be a place where visitor can click on a specific cafe, pub, or restaurant displayed on Google maps to find out more about the selected place
-* be a place where visitor can send an email in case that they didn't find something which was suppose to be very obvious
-* be a place where visitor can send an email in case that they have any suggestions or advices
+- be a place where visitor will come to look for cafes, pubs, or restaurant by selecting a specific establishment
+- be a place where visitor will be able to select a specific county in Ireland
+- be a place where visitor can look and select a specific cafe, pub, or a restaurant from the table
+- be a place where visitor can click on a specific cafe, pub, or restaurant displayed on Google maps to find out more about the selected place
+- be a place where visitor can send an email in case that they didn't find something which was suppose to be very obvious
+- be a place where visitor can send an email in case that they have any suggestions or advices
+
+## Wireframes
+
+I used [AdobeXD](https://www.adobe.com/ie/products/xd.html) to create
+[wireframes](https://github.com/vladimir-cmd/vladimir-cmd.github.io/tree/master/wireframes-mockups) in desktop, tablet and phone view.
 
 ## Features
 
 ### Page Features:
-* [Home](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html)
-   - This page starts with a header.
-   - Home page contains section where user can find one search field and two dropdown buttons. 
-   - In search field user can enter any keyword which relates to cafe, pub, or restaurant name
-   - User can also select one of the 32 counties to filter the search for a specific county.
-   - User also can selct one of three establishments to further filter the search for a specific county.
-   - After this section there is a Google Maps page, where the results are being shown.
-   - On the right hand side from Google Maps page, there is a table with Google Maps results being shown as well.
-   - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
 
-* [Contact](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/contact.html)
-   - Contact page contains an email form which visitor can fill out and send.
-   - This page starts with a header, with a hero image coming right after.
-   - Over the hero image there is a contact form box.
-   - The required fields are clearly indicated, with a possible notification in case a visitor doesn't fill all the required fields successfully.
-   - Newsletter subsection follows, where visitor can subscribe.
-   - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
-   
-* [About](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html)
-   - About Us page contains photos of creators of the website and a small description
-   - This page starts with a header.
-   - For a Desktop resolution, there are three columns with one row only.
-   - Each image has a title and a small description.
-   - Newsletter subsection follows, where visitor can subscribe.
-   - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
+- [Home](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html)
+
+  - This page starts with a header.
+  - Home page contains section where user can find one search field and two dropdown buttons.
+  - In search field user can enter any keyword which relates to cafe, pub, or restaurant name
+  - User can also select one of the 32 counties to filter the search for a specific county.
+  - User also can selct one of three establishments to further filter the search for a specific county.
+  - After this section there is a Google Maps page, where the results are being shown.
+  - On the right hand side from Google Maps page, there is a table with Google Maps results being shown as well.
+  - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
+
+- [Contact](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/contact.html)
+  - Contact page contains an email form which visitor can fill out and send.
+  - This page starts with a header, with a hero image coming right after.
+  - Over the hero image there is a contact form box.
+  - The required fields are clearly indicated, with a possible notification in case a visitor doesn't fill all the required fields successfully.
+  - Newsletter subsection follows, where visitor can subscribe.
+  - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
+- [About](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html)
+  - About Us page contains photos of creators of the website and a small description
+  - This page starts with a header.
+  - For a Desktop resolution, there are three columns with one row only.
+  - Each image has a title and a small description.
+  - Newsletter subsection follows, where visitor can subscribe.
+  - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
 
 ### All Page Features:
-* **Semantic HTML**: All pages have been written with semantic HTML in mind.
-* **Fixed Header**: Each page has a fixed header, for ease of navigation.
-* **Responsive Design**: Site pages are designed to work on all sizes of device.
- 
+
+- **Semantic HTML**: All pages have been written with semantic HTML in mind.
+- **Fixed Header**: Each page has a fixed header, for ease of navigation.
+- **Responsive Design**: Site pages are designed to work on all sizes of device.
+
 ### Specific Features:
-* **Subscribe to Newsletter**: Every page includes subscribe to newsletter section where visitor can subscribe for the latest recepies.
+
+- **Subscribe to Newsletter**: Every page includes subscribe to newsletter section where visitor can subscribe for the latest recepies.
 
 ## Technologies Used
 
 In this project the following technologies have been used.
 
-- [HTML](https://en.wikipedia.org/wiki/HTML) 
-   - Semantic markup language as the shell of the site.
+- [HTML](https://en.wikipedia.org/wiki/HTML)
+
+  - Semantic markup language as the shell of the site.
 
 - [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
-   - Cascading Style Sheets as the design of the site.
+
+  - Cascading Style Sheets as the design of the site.
 
 - [Javascript](https://en.wikipedia.org/wiki/JavaScript)
-   - Programming language for the workability of the site.
+
+  - Programming language for the workability of the site.
 
 - [Google Fonts](https://fonts.google.com/)
-   - Google's font catalog places typography front and center, inviting users to explore, sort, and test fonts for use in more than 135 languages.
+
+  - Google's font catalog places typography front and center, inviting users to explore, sort, and test fonts for use in more than 135 languages.
 
 - [FontAwesome](https://fontawesome.com/)
-   - **FontAwesome** provided the icons used on the page.
+
+  - **FontAwesome** provided the icons used on the page.
 
 - [Bootstrap 4](https://getbootstrap.com/)
-   - To be easily responsive, navbar, the list groups, card decks and forms were used to give a clean, simple and ordered look. I wanted to re-inforce what I had learnt from the UCFD module.
 
-- [Gitpod](https://gitpod.io/) 
+  - To be easily responsive, navbar, the list groups, card decks and forms were used to give a clean, simple and ordered look. I wanted to re-inforce what I had learnt from the UCFD module.
+
+- [Gitpod](https://gitpod.io/)
+
   - IDE (Integrated Development Environment).
 
-- [GitHub](github.com/) 
-  - The remote hosting platform. 
+- [GitHub](github.com/)
 
-- [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) 
+  - The remote hosting platform.
+
+- [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
+
   - To see visually the elements of what each code produced, what happens if code is changed, and responsiveness of different device sizes.
 
-- [Jigsaw](https://jigsaw.w3.org/css-validator) 
+- [Jigsaw](https://jigsaw.w3.org/css-validator)
+
   - To check for any errors in the CSS code.
 
-- [W3C Markup Validator](https://validator.w3.org/) 
+- [W3C Markup Validator](https://validator.w3.org/)
   - To check for any errors in HTML code.
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Send Project Request form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+Testing information is found on a separate file [TESTING.MD](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/TESTING.md)
 
 ## Deployment
 
@@ -125,12 +127,12 @@ Creation of website
 
 This website is deployed using GitHub pages.
 
-**GitHub pages** was used to deploy this site.
-    - Go to repository master branch ([Source](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/index.html))
-    - Press Settings button on right.
-    - Scroll down to Github Pages section.
-    - There will be link to website
-Note: there is only a master branch. No other branches were created.
+**GitHub pages** was used to deploy this site. 
+   1. Go to repository master branch ([Source](https://vladimir-cmd.github.io/pub_restaurant_search.github.io))
+   2. Press Settings button on right. 
+   3. Scroll down to Github Pages section. 
+   4. There will be link to website
+   Note: there is only a master branch. No other branches were created.
 
 To run the copy of website, there are two options:
 
@@ -142,16 +144,18 @@ To run the copy of website, there are two options:
 OR
 
 Important: must have git CLI installed on local machine
+
 1. Sign to your GitHub account
 2. search for the following repository: https://vladimir-cmd.github.io/pub_restaurant_search.github.io
 3. Click on "Clone or download" button and copy the path
 4. Open Command Line interface (Windows - Powershell or Linux\MacOS - Terminal)
 5. git clone https://github.com/vladimir-cmd/pub_restaurant_search.github.io.git
 6. You have successfully clonned repository on your local machine
-Note: You would require a web server to run the site from your local machine.
-As a workaround, you can use repl.it
+   Note: You would require a web server to run the site from your local machine.
+   As a workaround, you can use repl.it
 
 You can open the site in repl.it
+
 1. Sign to your GitHub account
 2. search for the following repository: https://vladimir-cmd.github.io/pub_restaurant_search.github.io
 3. Click on "Clone or download" button and copy the path
@@ -164,9 +168,10 @@ You can open the site in repl.it
 ## Credits
 
 ### Content
-
+- The Map is Google Maps [Google Maps](https://maps.google.com/)
 
 ### Media
+- The photos used are taken from [Unsplash](https://unsplash.com/) - Photos for everyone
 
 ### Acknowledgements
 
