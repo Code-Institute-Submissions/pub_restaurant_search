@@ -4,7 +4,7 @@ This website is a place where one can search for establishments.
 Site goal is to make it easier for others when it comes to searching for some info regarding nice cafes, pubs, or restaurants in Ireland.
 Visitor should be able to browse the site, search for establishments without registering.
 
-# <p align="center">[Cafe Pub Restaurant Search Web Site Link](https://github.com/vladimir-cmd/pub_restaurant_search.github.io "Cafe Pub Restaurant Search")</p>
+# <p align="center">[Cafe Pub Restaurant Search Web Site Link](https://github.com/vladimir-cmd/pub_restaurant_search.github.io "Cafe Pub Restaurant Search Homepage")</p>
  
 ## User Experience
 
@@ -47,10 +47,9 @@ Reason why creating this website:
    - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
    
 * [About](https://vladimir-cmd.github.io/pub_restaurant_search.github.io/about.html)
-   - Gallery page contains images of delicious food.
+   - About Us page contains photos of creators of the website and a small description
    - This page starts with a header.
-   - For a Desktop resolution, there are three columns.
-   - Images are a bit enlarged when you hover over it.
+   - For a Desktop resolution, there are three columns with one row only.
    - Each image has a title and a small description.
    - Newsletter subsection follows, where visitor can subscribe.
    - At the bottom of the page is a neat row of social links consisting of Facebook, Twitter, Instagram and Youtube.
@@ -72,6 +71,9 @@ In this project the following technologies have been used.
 
 - [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
    - Cascading Style Sheets as the design of the site.
+
+- [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+   - Programming language for the workability of the site.
 
 - [Google Fonts](https://fonts.google.com/)
    - Google's font catalog places typography front and center, inviting users to explore, sort, and test fonts for use in more than 135 languages.
