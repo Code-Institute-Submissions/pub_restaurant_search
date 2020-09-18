@@ -1,4 +1,4 @@
-# <p align="center">Testing for [Delicious Food](https://vladimir-cmd.github.io/pub_restaurant_search.github.io)<p>
+# <p align="center">Testing for [Cafe Pub Restaurant Search](https://vladimir-cmd.github.io/pub_restaurant_search.github.io)<p>
 
 Used [W3C HTML validator](https://validator.w3.org/#validate_by_input) website via the direct input path. 
 
