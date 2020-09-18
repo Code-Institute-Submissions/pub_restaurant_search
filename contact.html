@@ -8,16 +8,24 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/9cebba0a83.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js">
     </script>
     <script type="text/javascript">
-        (function() {
+        (function () {
             emailjs.init("user_jvmGfIPMidg5pZMQAROcI");
         })();
     </script>
@@ -25,6 +33,7 @@
 
 <body>
     <header>
+        <!-- Navigation Bit -->
         <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
             <div class="navbar-collapse collapse order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -36,8 +45,8 @@
             <div class="ml-auto order-0">
                 <a class="navbar-brand mx-auto" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 flex-grow-1">
                 <ul class="navbar-nav ml-auto">
@@ -54,20 +63,26 @@
             </div>
         </nav>
     </header>
+    <!-- Description Bit -->
     <section class="container">
         <div class="text">
-            <h4 class="contact-heading uppercase text-center">You couldn't find what you looking for? Do you have any suggestions or ideas?</h4>
+            <h4 class="contact-heading uppercase text-center">You couldn't find what you looking for? Do you have any
+                suggestions or ideas?</h4>
             <h5 class="welcome-message uppercase text-center">Let's work together</h5>
         </div>
+        <!-- Submission Form Bit -->
         <div class="center-form">
             <form onsubmit="return sendMail(this);" method="POST">
-                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
-                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
-                <textarea rows="5" name="projectsummary" class="form-control" id="projectsummary" placeholder="What do you have on mind?" required></textarea>
+                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required />
+                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email"
+                    required />
+                <textarea rows="5" name="projectsummary" class="form-control" id="projectsummary"
+                    placeholder="What do you have on mind?" required></textarea>
                 <button type="submit" class="btn btn-secondary center-block">Send Project Request</button>
             </form>
         </div>
     </section>
+    <!-- Newsletter Bit -->
     <section class="newsletter-contact">
         <div class="container">
             <div class="row">
@@ -77,8 +92,8 @@
                         <div class="input-group">
                             <input type="email" class="form-control" placeholder="Enter your email">
                             <span class="input-group-btn col-sm-3 col-md-3">
-                      <button class="btn" type="submit">Subscribe</button>
-                      </span>
+                                <button class="btn" type="submit">Subscribe</button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -86,6 +101,7 @@
         </div>
     </section>
     <footer>
+        <!-- Social Media Network Bit -->
         <ul class="social-networks">
             <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
             <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a></li>

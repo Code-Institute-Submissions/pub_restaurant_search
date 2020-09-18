@@ -8,16 +8,25 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/9cebba0a83.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
 </head>
 
 <body>
     <header>
+        <!-- Navigation Bit -->
         <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
             <div class="navbar-collapse collapse order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -29,8 +38,8 @@
             <div class="ml-auto order-0">
                 <a class="navbar-brand mx-auto" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 flex-grow-1">
                 <ul class="navbar-nav ml-auto">
@@ -47,15 +56,20 @@
             </div>
         </nav>
     </header>
+    <!-- Site Description Bit -->
     <div id="description">
         <p>
-            This site is for pubs and restaurants. If you need to find a bar, cafe, or a restaurant in Ireland, this is the place. You can select the county and also establishment.
+            This site is for pubs and restaurants. If you need to find a bar, cafe, or a restaurant in Ireland, this is
+            the place. You can select the county and also establishment.
         </p>
     </div>
     <form>
+        <!-- Search Bit -->
         <div class="form-row">
             <i class="fas fa-search fa-4x" aria-hidden="true"></i>
-            <input class="form col-lg-4 col-md-10 col-sm-11 col-xs-12" id="pac-input" type="text" placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
+            <input class="form col-lg-4 col-md-10 col-sm-11 col-xs-12" id="pac-input" type="text"
+                placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
+            <!-- Select County Dropdown Bit -->
             <select class="form col-lg-4 col-md-5 col-sm-11 col-xs-12" id="select-county" onchange="updateCounty()">
                 <option selected>Select County</option>
                 <option value="Antrim">Antrim</option>
@@ -91,7 +105,9 @@
                 <option value="Wexford">Wexford</option>
                 <option value="Wicklow">Wicklow</option>
             </select>
-            <select class="form col-lg-3 col-md-5 col-sm-11 col-xs-12" id="select-establishment" onchange="updateEstablishment()">
+            <!-- Select Establishment Dropdown Bit -->
+            <select class="form col-lg-3 col-md-5 col-sm-11 col-xs-12" id="select-establishment"
+                onchange="updateEstablishment()">
                 <option selected>Select Establishment</option>
                 <option value="bar">Bar</option>
                 <option value="cafe">Cafe</option>
@@ -99,6 +115,7 @@
             </select>
         </div>
     </form>
+    <!-- Google Maps API and Listing Infor Table Bit -->
     <div class="mapANDlisting">
         <div id="map"></div>
         <div id="listing">
@@ -108,6 +125,7 @@
             </table>
         </div>
     </div>
+    <!-- Info Window Content Bit -->
     <div style="display: none">
         <div id="infowindow-content">
             <img src="" alt="maps-icon" width="30" height="30" id="place-icon"><br>
@@ -122,7 +140,7 @@
         </div>
     </div>
 
-
+    <!-- Listing Info Table Info Window Content Bit -->
     <div style="display: none">
         <div id="info-content">
             <table>
@@ -149,7 +167,7 @@
             </table>
         </div>
     </div>
-
+    <!-- Newsletter Bit -->
     <section class="newsletter">
         <div class="container">
             <div class="row">
@@ -159,8 +177,8 @@
                         <div class="input-group">
                             <input type="email" class="form-control" placeholder="Enter your email">
                             <span class="input-group-btn col-sm-3 col-md-3">
-                      <button class="btn" type="submit">Subscribe</button>
-                      </span>
+                                <button class="btn" type="submit">Subscribe</button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -169,6 +187,7 @@
     </section>
 
     <footer>
+        <!-- Social Media Network Bit -->
         <ul class="social-networks">
             <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square fa-4x"></i></a></li>
             <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square fa-4x"></i></a></li>
@@ -176,8 +195,11 @@
             <li><a href="https://www.reddit.com" target="_blank"><i class="fab fa-reddit-square fa-4x"></i></a></li>
         </ul>
     </footer>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initialize&libraries=geometry,visualization,places&v=weekly" async defer></script>
+    <script
+        src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initialize&libraries=geometry,visualization,places&v=weekly"
+        async defer></script>
     <script src="assets/js/script.js"></script>
 </body>
 
