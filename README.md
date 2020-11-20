@@ -27,8 +27,10 @@ Reason why creating this website:
 
 ## Wireframes
 
-I used [AdobeXD](https://www.adobe.com/ie/products/xd.html) to create
-[wireframes](https://github.com/vladimir-cmd/pub_restaurant_search.github.io/wireframes-mockups) in desktop, tablet and phone view.
+I used [AdobeXD](https://www.adobe.com/ie/products/xd.html) to create wireframes in: 
+[desktop](https://github.com/vladimir-cmd/pub_restaurant_search.github.io/wireframes-mockups/desktop.png), 
+[tablet](https://github.com/vladimir-cmd/pub_restaurant_search.github.io/wireframes-mockups/ipad.png) and 
+[phone](https://github.com/vladimir-cmd/pub_restaurant_search.github.io/wireframes-mockups/iphone.png) view.
 
 ## Features
 
