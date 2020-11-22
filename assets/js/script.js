@@ -7,6 +7,7 @@ const IRELAND_BOUNDS = {
 
 var infowindow;
 var infowindowSwitch = false;
+var infowindowContent;
 var markers = [];
 var map;
 var google;
@@ -248,13 +249,15 @@ function updateCounty() {
       }
     }
 
-    try {
-      infowindowAutoComplete = new google.maps.InfoWindow();
-      infowindowContent = document.getElementById("infowindow-content");
-      infowindowAutoComplete.setContent(infowindowContent);
-      onUpdate = true;
-    } catch (err) {
-      console.log("ERROR: " + err.message);
+    if (!infowindowContent) {
+      try {
+        infowindowAutoComplete = new google.maps.InfoWindow();
+        infowindowContent = document.getElementById("infowindow-content");
+        infowindowAutoComplete.setContent(infowindowContent);
+        onUpdate = true;
+      } catch (err) {
+        console.log("ERROR: " + err.message);
+      }
     }
 
     google.maps.event.addDomListener(
@@ -282,13 +285,15 @@ function updateEstablishment() {
       }
     }
 
-    try {
-      infowindowAutoComplete = new google.maps.InfoWindow();
-      infowindowContent = document.getElementById("infowindow-content");
-      infowindowAutoComplete.setContent(infowindowContent);
-      onUpdate = true;
-    } catch (err) {
-      console.log("ERROR: " + err.message);
+    if (!infowindowContent) {
+      try {
+        infowindowAutoComplete = new google.maps.InfoWindow();
+        infowindowContent = document.getElementById("infowindow-content");
+        infowindowAutoComplete.setContent(infowindowContent);
+        onUpdate = true;
+      } catch (err) {
+        console.log("ERROR: " + err.message);
+      }
     }
 
     google.maps.event.addDomListener(
@@ -314,13 +319,14 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
   // Define geolocation if not defined already
   if (geoLocation === void 0) {
+    current_radius = countyList[9].radius;
     BOUNDS = {
-      lat: countyList[0].Current_latitude,
-      lng: countyList[0].Current_longitude,
+      lat: countyList[9].Current_latitude,
+      lng: countyList[9].Current_longitude,
     };
     var geoLocation = new google.maps.LatLng(
-      countyList[0].Current_latitude,
-      countyList[0].Current_longitude
+      countyList[9].Current_latitude,
+      countyList[9].Current_longitude
     );
   } else {
     for (var i = 0; i < countyList.length; i++) {
@@ -330,10 +336,15 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
           lat: countyList[i].Current_latitude,
           lng: countyList[i].Current_longitude,
         };
+        var geoLocation = new google.maps.LatLng(
+          countyList[i].Current_latitude,
+          countyList[i].Current_longitude
+        );
         break;
       }
     }
   }
+
 
   // Map bit
   map = new google.maps.Map(document.getElementById("map"), {
@@ -352,8 +363,13 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
 
   getEstablishmentKeyword = getEstablishment(select_establishment);
 
+  var BOUNDS = new google.maps.LatLngBounds(
+    new google.maps.LatLng(55.33539361 ,-10.58532715),
+    new google.maps.LatLng(51.4266145, -5.43273926)
+  );
   var options = {
     bounds: BOUNDS,
+    radius: current_radius,
     types: ["establishment"],
     strictBounds: true,
   };
@@ -363,8 +379,6 @@ function initialize(geoLocation, infowindowContent, onUpdate) {
     infowindowAutoComplete = new google.maps.InfoWindow();
     infowindowContent = document.getElementById("infowindow-content");
     infowindowAutoComplete.setContent(infowindowContent);
-  } else {
-    console.log("Establishment info Window");
   }
 
   // Autocomplete bit

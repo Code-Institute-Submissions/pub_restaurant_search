@@ -63,6 +63,20 @@
             the place. You can select the county and also establishment.
         </p>
     </div>
+    <!-- Info Window Content Bit -->
+    <div style="display: none">
+        <div id="infowindow-content">
+            <img src="" alt="maps-icon" width="30" height="30" id="place-icon"><br>
+            <span id="place-name"></span><br>
+            <span id="place-address"></span><br>
+            <span id="place-vicinity"></span><br>
+            <span id="place-phone"></span><br>
+            <span id="place-website"></span><br>
+            <span id="place-rating"></span><br>
+            <span id="place-user-rating-total"></span><br>
+            <span id="place-price-level"></span><br>
+        </div>
+    </div>
     <form>
         <!-- Search Bit -->
         <div class="form-row">
@@ -70,7 +84,7 @@
             <input class="form col-lg-4 col-md-10 col-sm-11 col-xs-12" id="pac-input" type="text"
                 placeholder="Enter a location" aria-label="Search" onfocus="this.value=''">
             <!-- Select County Dropdown Bit -->
-            <select class="form col-lg-4 col-md-5 col-sm-11 col-xs-12" id="select-county" onchange="updateCounty()">
+            <select class="form col-lg-4 col-md-5 col-sm-11 col-xs-12" id="select-county" onchange="updateCounty('info-content')">
                 <option selected>Select County</option>
                 <option value="Antrim">Antrim</option>
                 <option value="Armagh">Armagh</option>
@@ -123,20 +137,6 @@
             <table id="resultsTable">
                 <tbody id="results"></tbody>
             </table>
-        </div>
-    </div>
-    <!-- Info Window Content Bit -->
-    <div style="display: none">
-        <div id="infowindow-content">
-            <img src="" alt="maps-icon" width="30" height="30" id="place-icon"><br>
-            <span id="place-name"></span><br>
-            <span id="place-address"></span><br>
-            <span id="place-vicinity"></span><br>
-            <span id="place-phone"></span><br>
-            <span id="place-website"></span><br>
-            <span id="place-rating"></span><br>
-            <span id="place-user-rating-total"></span><br>
-            <span id="place-price-level"></span><br>
         </div>
     </div>
 
@@ -198,8 +198,9 @@
     <script
         src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&callback=initialize&libraries=geometry,visualization,places&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxS3lzSC-EdfVMF5lEg1Ijlq_cT02On4U&libraries=geometry,visualization,places&v=weekly&callback=initialize"
         async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
